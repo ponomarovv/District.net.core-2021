@@ -11,6 +11,13 @@ namespace District.Entities.Tables
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
+        [ForeignKey(nameof(Building))]
+        public int BuildingId { get; set; }
+        public Building Building { get; set; }
+
+
+
         public int EntranceNumer { get; set; }
         //public Building Building { get; private set; }
     }
