@@ -10,9 +10,9 @@ namespace District.Entities.Tables
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        int Id { get; set; }
+        public int Id { get; set; }
 
-        string Name { get; set; }
+        public string Name { get; set; }
 
     }
 }

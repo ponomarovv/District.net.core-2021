@@ -9,7 +9,7 @@ namespace Building_BL
 {
     public class BuildingService : IBuildingService
     {
-        //и, тут нарушается инкапсуляция? Или норм? 
+        
         public List<ApartmentService> Apartments { get; set; }
 
         public string Street { get; set; }
