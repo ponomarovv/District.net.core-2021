@@ -15,6 +15,14 @@ namespace District.Entities.Tables
         public int BuildingId { get; set; }
         public Building Building { get; set; }
 
+        [ForeignKey(nameof(Person))]
+        public int PersonId { get; set; }
+        public Person Person { get; set; }
+
+
+
+
+
         public int SquareSize { get; set; }
         public int ApartmentNumber { get; set; }
 
