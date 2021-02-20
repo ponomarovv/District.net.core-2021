@@ -21,7 +21,7 @@ namespace District.Entities.Tables
 
         [ForeignKey(nameof(Entrance))]
         public int EntranceId { get; set; }
-        public Person Entrance { get; set; }
+        public Entrance Entrance { get; set; }
 
 
 

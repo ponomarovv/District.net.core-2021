@@ -12,10 +12,26 @@ namespace District.CLI
     {
         //static async void  Main(string[] args)
         static void Main(string[] args)
-        {            
+        {
             IApartmentService apartmentService = new ApartmentService();
+            var res = apartmentService.CreateApartment(new ApartmentModel()
+            {
+                ApartmentNumber = 1,
+                BuildingId = 1,
+                IsOwn = false,
+                SquareSize = 12,
+                EntranceId = 1,
+                PersonId = 1,
+            });
+            res.Wait();
+            Task<List<ApartmentModel>> apartments = apartmentService.GetAllApartments();
+            apartments.Wait();
+            foreach (var apartment in apartments.Result)
+            {
+                Console.WriteLine($"{apartment.ApartmentNumber}, {apartment.SquareSize}, {apartment.IsOwn} ");
+            }
+            
 
-            //List<ApartmentModel> apartments = await apartmentService.GetAllApartments();
 
             Console.WriteLine("End of program");
             //Console.ReadLine();
