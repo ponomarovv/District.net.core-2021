@@ -3,6 +3,7 @@ using District.Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace District.Bl.Abstract.IServices
 {
@@ -12,5 +13,7 @@ namespace District.Bl.Abstract.IServices
         //{
         //    return 
         //}
+        Task<List<PersonModel>> GetAllPersons();
+        Task<PersonModel> CreatePerson(PersonModel personModel);
     }
 }

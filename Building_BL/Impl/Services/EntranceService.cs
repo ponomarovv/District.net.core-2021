@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Building_BL
+namespace District.Bl.Impl.Services
 {
     public class EntranceService : IEntranceService
     {

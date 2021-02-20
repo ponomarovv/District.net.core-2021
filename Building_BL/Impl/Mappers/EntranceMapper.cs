@@ -7,7 +7,7 @@ using System.Text;
 
 namespace District.Bl.Impl.Mappers
 {
-    public class EntranceMapper : IMapper<Entrance, EntranceModel>
+    public class EntranceMapper : IBackMapper<Entrance, EntranceModel>
     {
         public EntranceModel Map(Entrance entity)
         {
@@ -15,6 +15,15 @@ namespace District.Bl.Impl.Mappers
             {
                 Id = entity.Id,
                 EntranceNumer = entity.EntranceNumer,                   
+            };
+        }
+        public Entrance MapBack(EntranceModel model)
+        {
+            return new Entrance
+            {
+                Id = model.Id,
+                BuildingId = model.BuildingId,
+                EntranceNumer = model.EntranceNumer,
             };
         }
     }

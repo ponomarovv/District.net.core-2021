@@ -3,15 +3,17 @@ using System;
 using District.Dal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace District.Dal.Migrations
 {
     [DbContext(typeof(DistrictDbCondext))]
-    partial class DistrictDbCondextModelSnapshot : ModelSnapshot
+    [Migration("20210220144210_AddedPersonProps")]
+    partial class AddedPersonProps
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,9 +39,6 @@ namespace District.Dal.Migrations
 
                     b.Property<bool>("IsOwn")
                         .HasColumnType("boolean");
-
-                    b.Property<DateTime>("OrderDate")
-                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("PersonId")
                         .HasColumnType("integer");
@@ -105,6 +104,9 @@ namespace District.Dal.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("text");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("PhoneNumber")
                         .HasColumnType("integer");

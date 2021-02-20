@@ -7,7 +7,7 @@ using System.Text;
 
 namespace District.Bl.Impl.Mappers
 {
-    public class BuildingMapper : IMapper<Building, BuildingModel>
+    public class BuildingMapper : IBackMapper<Building, BuildingModel>
     {
         public BuildingModel Map(Building entity)
         {
@@ -16,6 +16,15 @@ namespace District.Bl.Impl.Mappers
                 BuildingNumber = entity.BuildingNumber,
                 Id = entity.Id,
                 Street = entity.Street,
+            };
+        }
+
+        public Building MapBack(BuildingModel model)
+        {
+            return new Building
+            {
+                BuildingNumber = model.BuildingNumber,
+                Street = model.Street,
             };
         }
     }

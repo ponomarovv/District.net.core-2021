@@ -7,7 +7,7 @@ using System.Text;
 
 namespace District.Bl.Impl.Mappers
 {
-    public class PersonMapper : IMapper<Person, PersonModel>
+    public class PersonMapper : IBackMapper<Person, PersonModel>
     {
         public PersonModel Map(Person entity)
         {
@@ -15,6 +15,19 @@ namespace District.Bl.Impl.Mappers
             {
                 Id = entity.Id,
                 Name = entity.Name,
+                PhoneNumber = entity.PhoneNumber,
+                //OrderDate = entity.OrderDate,
+            };
+        }
+
+        public Person MapBack(PersonModel model)
+        {
+            return new Person
+            {
+                //Id = model.Id,
+                Name = model.Name,
+                PhoneNumber = model.PhoneNumber,
+                //OrderDate = model.OrderDate,
             };
         }
     }

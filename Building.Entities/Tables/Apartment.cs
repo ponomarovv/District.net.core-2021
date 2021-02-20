@@ -30,6 +30,7 @@ namespace District.Entities.Tables
         public int ApartmentNumber { get; set; }
 
         public bool IsOwn { get; set; }
+        public DateTime OrderDate { get; set; }
 
 
         //public int BuildingNumber

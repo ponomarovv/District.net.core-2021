@@ -18,6 +18,7 @@ namespace District.Bl.Impl.Mappers
                 SquareSize = entity.SquareSize,
                 EntranceId = entity.EntranceId,
                 PersonId = entity.PersonId,
+                OrderDate = entity.OrderDate,
             };
         }
         public Apartment MapBack(ApartmentModel model)
@@ -30,6 +31,7 @@ namespace District.Bl.Impl.Mappers
                 SquareSize = model.SquareSize,
                 EntranceId = model.EntranceId,
                 PersonId = model.PersonId,
+                OrderDate = model.OrderDate,
             };
         }
     }

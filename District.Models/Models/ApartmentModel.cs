@@ -1,4 +1,6 @@
-﻿namespace District.Models.Models
+﻿using System;
+
+namespace District.Models.Models
 {
     public class ApartmentModel
     {
@@ -9,6 +11,7 @@
         public int SquareSize { get; set; }
         public int ApartmentNumber { get; set; }
         public bool IsOwn { get; set; }
+        public DateTime OrderDate { get; set; }
 
     }
 }

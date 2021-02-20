@@ -6,11 +6,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace District.Models.Models
 {
-    public class EntranceModel  
+    public class EntranceModel
     {
-        
+
         public int Id { get; set; }
         public int EntranceNumer { get; set; }
         //public Building Building { get; private set; }
+
+        public int BuildingId { get; set; }
+
+
     }
 }

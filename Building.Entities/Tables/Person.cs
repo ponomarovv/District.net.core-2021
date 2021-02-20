@@ -11,8 +11,9 @@ namespace District.Entities.Tables
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-
         public string Name { get; set; }
+        public int PhoneNumber { get; set; }
+        //public DateTime OrderDate { get; set; }
 
     }
 }

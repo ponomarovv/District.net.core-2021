@@ -28,14 +28,14 @@ namespace District.Bl.Impl.Services
 
         public async Task<List<ApartmentModel>> GetAllApartments()
         {
-            //return (await _apartmentRepository.GetAllAsync()).Select(_apartmentMapper.Map).ToList();
-            var result = await _apartmentRepository.GetAllAsync();
-            List<ApartmentModel> apartmentModels = new List<ApartmentModel>();
-            foreach (var entity in result)
-            {
-                apartmentModels.Add(_apartmentMapper.Map(entity));
-            }
-            return apartmentModels;
+            return (await _apartmentRepository.GetAllAsync()).Select(_apartmentMapper.Map).ToList();
+            //var result = await _apartmentRepository.GetAllAsync();
+            //List<ApartmentModel> apartmentModels = new List<ApartmentModel>();
+            //foreach (var entity in result)
+            //{
+            //    apartmentModels.Add(_apartmentMapper.Map(entity));
+            //}
+            //return apartmentModels;
         }
 
         public async Task<List<ApartmentModel>> GetApartmentsByBuildingId(int buildId)
