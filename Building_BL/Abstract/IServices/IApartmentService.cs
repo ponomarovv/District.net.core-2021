@@ -11,6 +11,6 @@ namespace District.Bl.Abstract.IServices
         Task<List<ApartmentModel>> GetAllApartments();
         Task<List<ApartmentModel>> GetApartmentsByBuildingId(int buildId);
         Task<ApartmentModel> CreateApartment(ApartmentModel model);
-
+        Task<List<ApartmentModel>> GetApartmentsByPersonId(int personId);
     }
 }

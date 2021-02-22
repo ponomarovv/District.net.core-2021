@@ -24,7 +24,7 @@ namespace District.Bl.Impl.Mappers
         {
             return new Person
             {
-                //Id = model.Id,
+                Id = model.Id,
                 Name = model.Name,
                 PhoneNumber = model.PhoneNumber,
                 //OrderDate = model.OrderDate,

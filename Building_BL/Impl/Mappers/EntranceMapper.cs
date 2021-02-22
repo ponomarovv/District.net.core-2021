@@ -14,7 +14,8 @@ namespace District.Bl.Impl.Mappers
             return new EntranceModel
             {
                 Id = entity.Id,
-                EntranceNumer = entity.EntranceNumer,                   
+                EntranceNumer = entity.EntranceNumer,
+                BuildingId = entity.BuildingId,
             };
         }
         public Entrance MapBack(EntranceModel model)

@@ -9,5 +9,6 @@ namespace District.Bl.Abstract.IServices
     public interface IBuildingService
     {
         Task<BuildingModel> CreateBuilding(BuildingModel model);
+        Task DeleteBuilding(int id);
     }
 }

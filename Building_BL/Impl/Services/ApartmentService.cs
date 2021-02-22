@@ -26,6 +26,17 @@ namespace District.Bl.Impl.Services
             return  _apartmentMapper.Map(await _apartmentRepository.AddAsync(_apartmentMapper.MapBack(model)));
         }
 
+        public async Task UpdateApartment(ApartmentModel model)
+        {
+            await _apartmentRepository.UpdateAsync(_apartmentMapper.MapBack(model));
+        }
+
+        public async Task DeleteApartment(int id)
+        {
+            await _apartmentRepository.DeleteAsync(id);
+        }
+
+
         public async Task<List<ApartmentModel>> GetAllApartments()
         {
             return (await _apartmentRepository.GetAllAsync()).Select(_apartmentMapper.Map).ToList();
@@ -40,7 +51,15 @@ namespace District.Bl.Impl.Services
 
         public async Task<List<ApartmentModel>> GetApartmentsByBuildingId(int buildId)
         {
-            return ((await _apartmentRepository.GetApartmensByBuildingId(buildId)).Select(_apartmentMapper.Map)).ToList();
+            return ((await _apartmentRepository.GetApartmenеsByBuildingId(buildId)).Select(_apartmentMapper.Map)).ToList();
         }
+
+        public async Task<List<ApartmentModel>> GetApartmentsByPersonId(int personId)
+        {
+            return ((await _apartmentRepository.GetApartmentsByPersonId(personId)).Select(_apartmentMapper.Map)).ToList();
+        }
+
+
+
     }
 }

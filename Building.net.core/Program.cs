@@ -10,9 +10,57 @@ namespace District.CLI
 {
     class Program
     {
+
         static void Main(string[] args)
         {
-            //IApartmentService apartmentService = new ApartmentService();
+            //Эта трехуровневая архитектура буквально выпила мою душу. Она принесла мне огромное количество радости и веселья. Спасибо.
+
+            //Generator generator = new Generator();
+            //var res =  generator.CreateBuildings(4);
+            //res.Wait();
+
+            IPersonService personService = new PersonService();
+            IApartmentService apartmentService = new ApartmentService();
+
+            string someName = "Name1";
+            var item = personService.FindPersonByName(someName);
+            item.Wait();
+
+            var foundApartments = apartmentService.GetApartmentsByPersonId(item.Result.Id);
+            foundApartments.Wait();
+            foreach (var apartment in foundApartments.Result)
+            {
+                Console.WriteLine($"{item.Result.Name}, {apartment.SquareSize}, {apartment.SquareSize * SquarePrice.priceForSquare}");
+            }
+            Console.WriteLine();
+
+
+            //var item = personService.CreatePerson(new PersonModel
+            //{
+            //    Id = 2,
+            //    Name = "Name1",
+            //    PhoneNumber = 0670000001,
+            //});
+            //item.Wait();
+
+            //var person = personService.BuyAppartment(2, 1);
+            //person.Wait();
+
+            //item = personService.CreatePerson(new PersonModel
+            //{
+            //    Id = 3,
+            //    Name = "Name2",
+            //    PhoneNumber = 0670000002,
+            //});
+            //item.Wait();
+
+            //Random rand = new Random();
+
+            //int a = rand.Next(0, 10);
+            //Console.WriteLine(a);
+
+
+
             //var res = apartmentService.CreateApartment(new ApartmentModel()
             //{
             //    ApartmentNumber = 1,
@@ -31,21 +79,24 @@ namespace District.CLI
             //}
 
 
-            IPersonService PersonService = new PersonService();
-            //var res = PersonService.CreatePerson(new PersonModel()
-            //{
-            //    //Id = 0,
-            //    Name = "Name2",
-            //    PhoneNumber = 0670000002,
-            //}); 
-            //res.Wait();
+            //IPersonService personService = new PersonService();
+            ////var res = personService.CreatePerson(new PersonModel()
+            ////{
+            ////    //Id = 0,
+            ////    Name = "Name2",
+            ////    PhoneNumber = 0670000002,
+            ////});
+            ////res.Wait();
 
-            Task<List<PersonModel>> persons = PersonService.GetAllPersons();
-            persons.Wait();
-            foreach (var person in persons.Result)
-            {
-                Console.WriteLine($"{person.Id}, {person.Name}, {person.PhoneNumber}");
-            }
+            ////res = personService.
+            ////res.Wait();
+
+            //Task<List<PersonModel>> persons = personService.GetAllPersons();
+            //persons.Wait();
+            //foreach (var person in persons.Result)
+            //{
+            //    Console.WriteLine($"{person.Id}, {person.Name}, {person.PhoneNumber}");
+            //}
 
 
 

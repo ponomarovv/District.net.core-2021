@@ -17,12 +17,17 @@ namespace District.Dal.Impl.Repository
 
         }
 
-        public async Task<List<Apartment>> GetApartmensByBuildingId(int id)
+        public async Task<List<Apartment>> GetApartmenеsByBuildingId(int buildingid)
         {
-            var result = await  Context.Apartments.Where(x => x.BuildingId == id).ToListAsync();
+            var result = await  Context.Apartments.Where(x => x.BuildingId == buildingid).ToListAsync();
             return  result;
         }
 
+        public async Task<List<Apartment>> GetApartmentsByPersonId(int personId)
+        {
+            var result = await Context.Apartments.Where(x => x.PersonId == personId).ToListAsync();
+            return result;
+        }
 
     }
 }

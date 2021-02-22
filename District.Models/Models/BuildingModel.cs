@@ -11,7 +11,7 @@ namespace District.Models.Models
         public int Id { get; set; }
         //public List<Apartment> Apartments { get; set; }
 
-        public string Street { get; set; }
+        public string Street { get; set; } = "Street";
         public int BuildingNumber { get; set; }
     }
 }

@@ -15,5 +15,8 @@ namespace District.Bl.Abstract.IServices
         //}
         Task<List<PersonModel>> GetAllPersons();
         Task<PersonModel> CreatePerson(PersonModel personModel);
+        Task BuyAppartment(int personId, int apartmentId);
+        Task<PersonModel> FindPersonByName(string name);
+
     }
 }

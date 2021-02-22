@@ -30,7 +30,21 @@ namespace District.Bl.Impl.Services
             return _buildingMapper.Map(await _buildingRepository.AddAsync(_buildingMapper.MapBack(model)));
         }
 
-        public async Task<List<BuildingModel>> GetAllApartments()
+        public async Task UpdateBuilding(BuildingModel model)
+        {
+            await _buildingRepository.UpdateAsync(_buildingMapper.MapBack(model));
+        }
+
+        public async Task DeleteBuilding(int id)
+        {
+            await _buildingRepository.DeleteAsync(id);
+        }
+
+
+
+
+
+        public async Task<List<BuildingModel>> GetAllBuildins()
         {
             return (await _buildingRepository.GetAllAsync()).Select(_buildingMapper.Map).ToList();
         }

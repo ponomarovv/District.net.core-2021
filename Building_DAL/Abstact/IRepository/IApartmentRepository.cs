@@ -9,6 +9,7 @@ namespace District.Dal.Abstact.IRepository
 {
     public interface IApartmentRepository : IGenericKeyRepository<int, Apartment>
     {
-        Task<List<Apartment>> GetApartmensByBuildingId(int id);
+        Task<List<Apartment>> GetApartmenеsByBuildingId(int id);
+        Task<List<Apartment>> GetApartmentsByPersonId(int personId);
     }
 }
