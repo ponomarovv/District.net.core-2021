@@ -50,6 +50,7 @@ namespace District.Bl.Impl.Services
             {
                 item.IsOwn = true;
             }
+            item.OrderDate = DateTime.Now;
             await _apartmentRepository.UpdateAsync(item);
         }
 

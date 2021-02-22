@@ -24,6 +24,7 @@ namespace District.Bl.Impl.Mappers
             return new Building
             {
                 BuildingNumber = model.BuildingNumber,
+                Id = model.Id,
                 Street = model.Street,
             };
         }

@@ -27,6 +27,7 @@ namespace District.Bl.Impl.Mappers
             {
                 ApartmentNumber = model.ApartmentNumber,
                 BuildingId = model.BuildingId,
+                Id = model.Id,
                 IsOwn = model.IsOwn,
                 SquareSize = model.SquareSize,
                 EntranceId = model.EntranceId,

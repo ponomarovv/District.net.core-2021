@@ -16,7 +16,6 @@ namespace District.Bl.Impl.Mappers
                 Id = entity.Id,
                 Name = entity.Name,
                 PhoneNumber = entity.PhoneNumber,
-                //OrderDate = entity.OrderDate,
             };
         }
 
@@ -27,7 +26,6 @@ namespace District.Bl.Impl.Mappers
                 Id = model.Id,
                 Name = model.Name,
                 PhoneNumber = model.PhoneNumber,
-                //OrderDate = model.OrderDate,
             };
         }
     }
