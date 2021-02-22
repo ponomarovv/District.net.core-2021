@@ -16,21 +16,21 @@ namespace District.CLI
             //Эта трехуровневая архитектура буквально выпила мою душу. Она принесла мне огромное количество радости и веселья. Спасибо.
 
             //Generator generator = new Generator();
-            //var res =  generator.CreateBuildings(4);
+            //var res = generator.CreateBuildings(4);
             //res.Wait();
 
             IPersonService personService = new PersonService();
             IApartmentService apartmentService = new ApartmentService();
 
-            string someName = "Name1";
-            var item = personService.FindPersonByName(someName);
-            item.Wait();
+            string someName = "Name2";
+            var somePerson = personService.FindPersonByName(someName);
+            somePerson.Wait();
 
-            var foundApartments = apartmentService.GetApartmentsByPersonId(item.Result.Id);
+            var foundApartments = apartmentService.GetApartmentsByPersonId(somePerson.Result.Id);
             foundApartments.Wait();
             foreach (var apartment in foundApartments.Result)
             {
-                Console.WriteLine($"{item.Result.Name}, {apartment.SquareSize}, {apartment.SquareSize * SquarePrice.priceForSquare}");
+                Console.WriteLine($"{somePerson.Result.Name}, {apartment.SquareSize}, {apartment.SquareSize * SquarePrice.priceForSquare}, {apartment.OrderDate}, {somePerson.Result.PhoneNumber}");
             }
             Console.WriteLine();
 
@@ -43,21 +43,18 @@ namespace District.CLI
             //});
             //item.Wait();
 
-            //var person = personService.BuyAppartment(2, 1);
+            //var person = personService.BuyAppartment(2, 6);
             //person.Wait();
 
-            //item = personService.CreatePerson(new PersonModel
+            //var item2 = personService.CreatePerson(new PersonModel
             //{
             //    Id = 3,
-            //    Name = "Name2",
-            //    PhoneNumber = 0670000002,
+            //    Name = "Name3",
+            //    PhoneNumber = 0670000003,
             //});
-            //item.Wait();
+            //item2.Wait();
 
-            //Random rand = new Random();
 
-            //int a = rand.Next(0, 10);
-            //Console.WriteLine(a);
 
 
 
