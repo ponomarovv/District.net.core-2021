@@ -29,5 +29,11 @@ namespace District.Dal.Impl.Repository
             return result;
         }
 
+        //public async Task<List<Apartment>> GetBuildingIdByApartmentId(int apartmentId)
+        //{
+        //    var result = await Context.Buildings.Where(x => x.id == apartmentId).ToListAsync();
+        //    return result;
+        //}
+
     }
 }

@@ -13,6 +13,6 @@ namespace District.Dal.Abstract.IRepository
         Task DeleteAsync(Tkey entity);
         Task<TEntity> GetByIdAsync(Tkey key);
         Task<List<TEntity>> GetAllAsync();
-        //Task<int> GetCountAsync();
+        Task<int> GetCountAsync();
     }
 }

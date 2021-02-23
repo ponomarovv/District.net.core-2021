@@ -38,6 +38,12 @@ namespace District.Bl.Impl.Services
         {
             await _entranceRepository.DeleteAsync(_entranceMapper.MapBack(model).Id);
         }
+        public async Task<EntranceModel> GetByIdAsync(int id)
+        {
+            var item = await _entranceRepository.GetByIdAsync(id);
+
+            return _entranceMapper.Map(item);
+        }
         public async Task<List<EntranceModel>> GetAllEntrances()
         {
             return (await _entranceRepository.GetAllAsync()).Select(_entranceMapper.Map).ToList();

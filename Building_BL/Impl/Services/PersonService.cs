@@ -53,11 +53,22 @@ namespace District.Bl.Impl.Services
             item.OrderDate = DateTime.Now;
             await _apartmentRepository.UpdateAsync(item);
         }
+        public async Task<PersonModel> GetByIdAsync(int id)
+        {
+            var item = await _personRepository.GetByIdAsync(id);
+
+            return _personMapper.Map(item);
+        }
 
 
         public async Task<PersonModel> FindPersonByName(string name)
         {
-            return _personMapper.Map(await _personRepository.FindPersonByName(name));
+            var result =  _personMapper.Map(await _personRepository.FindPersonByName(name));
+            //if (result == null)
+            //{
+            //    Console.WriteLine("Nothing found");
+            //}
+            return result;
         }
         //return (await _apartmentRepository.GetAllAsync()).Select(_apartmentMapper.Map).ToList();
         //await _apartmentRepository.UpdateAsync(_apartmentMapper.MapBack(model));

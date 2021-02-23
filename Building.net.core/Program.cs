@@ -13,7 +13,9 @@ namespace District.CLI
 
         static void Main(string[] args)
         {
-            //Эта трехуровневая архитектура буквально выпила мою душу. Она принесла мне огромное количество радости и веселья. Спасибо.
+            //Эта трехуровневая архитектура буквально выпила мою душу. Она принесла мне огромное количество радости и разочарований. Спасибо.
+
+            
 
             //Generator generator = new Generator();
             //var res = generator.CreateBuildings(4);
@@ -21,8 +23,28 @@ namespace District.CLI
 
             IPersonService personService = new PersonService();
             IApartmentService apartmentService = new ApartmentService();
+            IBuildingService buildingService = new BuildingService();
 
+            //Console.WriteLine("Enter someName please:");
+            //string s = Console.ReadLine();
+
+            //string someName = "Building Creator";
             string someName = "Name2";
+
+            //while (true)
+            //{
+            //    Task<List<PersonModel>> persons = personService.GetAllPersons();
+            //    persons.Wait();
+            //    foreach (var person in persons.Result)
+            //    {
+            //        if (person.Name == someName)
+            //        {
+            //            break;
+            //        }
+            //        Console.WriteLine($"{person.Id}, {person.Name}, {person.PhoneNumber}");
+            //    }
+            //}
+
             var somePerson = personService.FindPersonByName(someName);
             somePerson.Wait();
 
@@ -30,10 +52,11 @@ namespace District.CLI
             foundApartments.Wait();
             foreach (var apartment in foundApartments.Result)
             {
-                Console.WriteLine($"{somePerson.Result.Name}, {apartment.SquareSize}, {apartment.SquareSize * SquarePrice.priceForSquare}, {apartment.OrderDate}, {somePerson.Result.PhoneNumber}");
+                Console.WriteLine($"{somePerson.Result.Name}, {(buildingService.GetByIdAsync(apartment.BuildingId)).Result.BuildingNumber} , {apartment.ApartmentNumber},  {apartment.SquareSize}, {apartment.SquareSize * SquarePrice.priceForSquare}, {apartment.OrderDate}, {somePerson.Result.PhoneNumber}");
             }
             Console.WriteLine();
 
+            //
 
             //var item = personService.CreatePerson(new PersonModel
             //{
@@ -43,7 +66,8 @@ namespace District.CLI
             //});
             //item.Wait();
 
-            //var person = personService.BuyAppartment(2, 6);
+            // Buy apartment
+            //var person = personService.BuyAppartment(3, 9);
             //person.Wait();
 
             //var item2 = personService.CreatePerson(new PersonModel
@@ -102,4 +126,5 @@ namespace District.CLI
         }
     }
 }
+
 

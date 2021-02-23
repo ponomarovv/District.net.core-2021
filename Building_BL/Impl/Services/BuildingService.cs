@@ -40,11 +40,16 @@ namespace District.Bl.Impl.Services
             await _buildingRepository.DeleteAsync(id);
         }
 
+        public async Task<BuildingModel> GetByIdAsync(int id)
+        {
+            var item = await _buildingRepository.GetByIdAsync(id);
+
+            return _buildingMapper.Map(item);
+        }
 
 
 
-
-        public async Task<List<BuildingModel>> GetAllBuildins()
+        public async Task<List<BuildingModel>> GetAllBuildings()
         {
             return (await _buildingRepository.GetAllAsync()).Select(_buildingMapper.Map).ToList();
         }

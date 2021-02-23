@@ -29,7 +29,7 @@ namespace District.Entities.Tables
         public int SquareSize { get; set; }
         public int ApartmentNumber { get; set; }
 
-        public bool IsOwn { get; set; }
+        public bool IsOwn { get; set; } = false;
         public DateTime? OrderDate { get; set; }
 
 

@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace District.Bl.Abstract.IServices
 {
-    public interface IEntranceService 
+    public interface IEntranceService
     {
         public Task<EntranceModel> CreateEntrance(EntranceModel model);
+        Task UpdateEntrance(EntranceModel model);
+        Task DeleteEntrance(EntranceModel model);
+        Task<EntranceModel> GetByIdAsync(int id);
+
+        Task<List<EntranceModel>> GetAllEntrances();
 
     }
 }
