@@ -14,7 +14,7 @@ namespace District.Bl.Impl.Mappers
             return new EntranceModel
             {
                 Id = entity.Id,
-                EntranceNumer = entity.EntranceNumer,
+                EntranceNumber = entity.EntranceNumer,
                 BuildingId = entity.BuildingId,
             };
         }
@@ -24,7 +24,7 @@ namespace District.Bl.Impl.Mappers
             {
                 Id = model.Id,
                 BuildingId = model.BuildingId,
-                EntranceNumer = model.EntranceNumer,
+                EntranceNumer = model.EntranceNumber,
             };
         }
     }

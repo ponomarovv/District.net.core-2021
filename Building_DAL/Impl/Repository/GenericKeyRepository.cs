@@ -13,10 +13,10 @@ namespace District.Dal.Impl.Repository
 {
     public abstract class GenericKeyRepository<TKey, TEntity> : IGenericKeyRepository<TKey, TEntity> where TEntity : class
     {
-        public DistrictDbCondext Context;
+        public DistrictDbContext Context;
         public DbSet<TEntity> DbSet => Context.Set<TEntity>();
 
-        public GenericKeyRepository(DistrictDbCondext context)
+        public GenericKeyRepository(DistrictDbContext context)
         {
             Context = context;
         }

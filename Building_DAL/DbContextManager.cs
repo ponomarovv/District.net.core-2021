@@ -7,11 +7,22 @@ namespace District.Dal
 {
     public class DbContextManager
     {
-        private static DistrictDbCondext _districtDbCondext = null;
-        public static DistrictDbCondext DistrictDbCondext
+        private static DistrictDbContext _districtDbContext = null;
+        public static DistrictDbContext DistrictDbContext
         {
-            get => _districtDbCondext ??= new DistrictDbCondext();
-            private set => _districtDbCondext = value;
+            get
+            {
+                if (_districtDbContext == null)
+                {
+                    _districtDbContext = new DistrictDbContext();
+                }
+                return _districtDbContext;
+            }
+
+            private set
+            {
+                _districtDbContext = value;
+            }
         }
     }
 }

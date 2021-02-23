@@ -10,7 +10,7 @@ namespace District.Models.Models
     {
 
         public int Id { get; set; }
-        public int EntranceNumer { get; set; }
+        public int EntranceNumber { get; set; }
         //public Building Building { get; private set; }
 
         public int BuildingId { get; set; }

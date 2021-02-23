@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace District.Dal.Migrations
 {
-    [DbContext(typeof(DistrictDbCondext))]
+    [DbContext(typeof(DistrictDbContext))]
     [Migration("20210220152152_FixedOrderDate")]
     partial class FixedOrderDate
     {

@@ -11,7 +11,7 @@ namespace District.Dal.Impl.Repository
 {
     public class PersonRepository : GenericKeyRepository<int, Person>, IPersonRepository
     {
-        public PersonRepository() : base(DbContextManager.DistrictDbCondext)
+        public PersonRepository() : base(DbContextManager.DistrictDbContext)
         {
             
         }

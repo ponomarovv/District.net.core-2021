@@ -54,9 +54,9 @@ namespace District.Bl.Impl.Services
             //return apartmentModels;
         }
 
-        public async Task<List<ApartmentModel>> GetApartmentsByBuildingId(int buildId)
+        public async Task<List<ApartmentModel>> GetApartmentsByBuildingId(int buildingId)
         {
-            return ((await _apartmentRepository.GetApartmenеsByBuildingId(buildId)).Select(_apartmentMapper.Map)).ToList();
+            return ((await _apartmentRepository.GetApartmentsByBuildingId(buildingId)).Select(_apartmentMapper.Map)).ToList();
         }
 
         public async Task<List<ApartmentModel>> GetApartmentsByPersonId(int personId)

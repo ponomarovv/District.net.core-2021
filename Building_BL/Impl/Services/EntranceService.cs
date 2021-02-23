@@ -34,9 +34,9 @@ namespace District.Bl.Impl.Services
             await _entranceRepository.UpdateAsync(_entranceMapper.MapBack(model));
         }
 
-        public async Task DeleteEntrance(EntranceModel model)
+        public async Task DeleteEntrance(int id)
         {
-            await _entranceRepository.DeleteAsync(_entranceMapper.MapBack(model).Id);
+            await _entranceRepository.DeleteAsync(id);
         }
         public async Task<EntranceModel> GetByIdAsync(int id)
         {

@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace District.Dal.Migrations
 {
-    [DbContext(typeof(DistrictDbCondext))]
+    [DbContext(typeof(DistrictDbContext))]
     [Migration("20210222150930_FixedNullableInApartments")]
     partial class FixedNullableInApartments
     {

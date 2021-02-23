@@ -12,5 +12,7 @@ namespace District.Bl.Abstract.IServices
         Task<BuildingModel> GetByIdAsync(int id);
         Task DeleteBuilding(int id);
         Task UpdateBuilding(BuildingModel model);
+
+        Task<List<BuildingModel>> GetAllBuildings();
     }
 }

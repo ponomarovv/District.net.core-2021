@@ -6,6 +6,6 @@ namespace District.CLI
 {
     public class SquarePrice
     {
-        public static int priceForSquare = 10;
+        public int priceForOneM2 = 10;
     }
 }

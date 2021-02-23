@@ -8,7 +8,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace District.Dal.Migrations
 {
-    [DbContext(typeof(DistrictDbCondext))]
+    [DbContext(typeof(DistrictDbContext))]
     partial class DistrictDbCondextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

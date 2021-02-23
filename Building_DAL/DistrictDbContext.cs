@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace District.Dal
 {
-    public class DistrictDbCondext : DbContext
+    public class DistrictDbContext : DbContext
     {
-        public DistrictDbCondext()
+        public DistrictDbContext()
         {
             
         }
@@ -15,10 +15,7 @@ namespace District.Dal
             optionsBuilder.UseNpgsql(@"host = 127.0.0.1; port = 5433; database = districtdb; user id = tdu819; password = 1111");
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-        }
+
 
         public DbSet<Building> Buildings { get; set; }
         public DbSet<Apartment> Apartments { get; set; }

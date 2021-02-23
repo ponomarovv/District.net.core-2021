@@ -8,7 +8,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace District.Dal.Migrations
 {
-    [DbContext(typeof(DistrictDbCondext))]
+    [DbContext(typeof(DistrictDbContext))]
     [Migration("20210220123749_Init")]
     partial class Init
     {

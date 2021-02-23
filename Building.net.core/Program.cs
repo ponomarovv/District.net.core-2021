@@ -44,6 +44,8 @@ namespace District.CLI
             //        Console.WriteLine($"{person.Id}, {person.Name}, {person.PhoneNumber}");
             //    }
             //}
+            SquarePrice squarePrice = new SquarePrice();
+            squarePrice.priceForOneM2 = 100;
 
             var somePerson = personService.FindPersonByName(someName);
             somePerson.Wait();
@@ -52,7 +54,9 @@ namespace District.CLI
             foundApartments.Wait();
             foreach (var apartment in foundApartments.Result)
             {
-                Console.WriteLine($"{somePerson.Result.Name}, {(buildingService.GetByIdAsync(apartment.BuildingId)).Result.BuildingNumber} , {apartment.ApartmentNumber},  {apartment.SquareSize}, {apartment.SquareSize * SquarePrice.priceForSquare}, {apartment.OrderDate}, {somePerson.Result.PhoneNumber}");
+                var tempBuilding = buildingService.GetByIdAsync(apartment.BuildingId);
+                tempBuilding.Wait();
+                Console.WriteLine($"{somePerson.Result.Name}, {tempBuilding.Result.BuildingNumber} , {apartment.ApartmentNumber},  {apartment.SquareSize}, {apartment.SquareSize * squarePrice.priceForOneM2}, {apartment.OrderDate}, {somePerson.Result.PhoneNumber}");
             }
             Console.WriteLine();
 

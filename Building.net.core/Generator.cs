@@ -33,7 +33,7 @@ namespace District.CLI
                 var res = await entranceServiceService.CreateEntrance(new EntranceModel()
                 {
                     BuildingId = buildingId,
-                    EntranceNumer = i + 1,
+                    EntranceNumber = i + 1,
 
                 });
                 await CreateAppartments(buildingId, res.Id, 75);

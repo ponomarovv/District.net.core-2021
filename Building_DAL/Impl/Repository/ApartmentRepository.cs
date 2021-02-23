@@ -12,12 +12,12 @@ namespace District.Dal.Impl.Repository
 {
     public class ApartmentRepository : GenericKeyRepository<int, Apartment>, IApartmentRepository
     {
-        public ApartmentRepository() : base(DbContextManager.DistrictDbCondext)
+        public ApartmentRepository() : base(DbContextManager.DistrictDbContext)
         { 
 
         }
 
-        public async Task<List<Apartment>> GetApartmenеsByBuildingId(int buildingid)
+        public async Task<List<Apartment>> GetApartmentsByBuildingId(int buildingid)
         {
             var result = await  Context.Apartments.Where(x => x.BuildingId == buildingid).ToListAsync();
             return  result;

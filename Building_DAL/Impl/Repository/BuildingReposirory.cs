@@ -11,7 +11,7 @@ namespace District.Dal.Impl.Repository
 {
     public class BuildingReposirory : GenericKeyRepository<int, Building>, IBuildingRepository
     {
-        public BuildingReposirory() : base(DbContextManager.DistrictDbCondext)
+        public BuildingReposirory() : base(DbContextManager.DistrictDbContext)
         {
 
         }
