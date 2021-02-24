@@ -45,7 +45,7 @@ namespace District.CLI
             //    }
             //}
             SquarePrice squarePrice = new SquarePrice();
-            squarePrice.priceForOneM2 = 100;
+            //squarePrice.priceForOneM2 = 100;
 
             var somePerson = personService.FindPersonByName(someName);
             somePerson.Wait();
@@ -60,6 +60,27 @@ namespace District.CLI
             }
             Console.WriteLine();
 
+            //find all
+            var allPerson = personService.GetAllPersons();
+            somePerson.Wait();
+            
+            foreach (var person  in allPerson.Result)
+            {
+                if (person.Id == 1)
+                {
+                    continue;
+                }
+                var personApartments = apartmentService.GetApartmentsByPersonId(person.Id);
+                personApartments.Wait();
+                foreach (var personApartment in personApartments.Result)
+                {
+                    var tempBuilding = buildingService.GetByIdAsync(personApartment.BuildingId);
+                    tempBuilding.Wait();
+                    Console.WriteLine($"{person.Name}, {tempBuilding.Result.BuildingNumber}, {personApartment.ApartmentNumber},  {personApartment.OrderDate}, {person.PhoneNumber} {personApartment.SquareSize}, {personApartment.SquareSize * squarePrice.priceForOneM2},");
+                }
+            }
+            
+            
             //
 
             //var item = personService.CreatePerson(new PersonModel
