@@ -16,7 +16,7 @@ using District.Bl.Abstract.IServices;
 using District.Bl.Impl.Services;
 using District.Generators;
 using District.Models.Models;
-using System.Threading.Tasks;
+using District.Entities.Tables;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 
 namespace District.WPF
@@ -28,10 +28,10 @@ namespace District.WPF
     {
         //Эта трехуровневая архитектура буквально выпила мою душу. Она принесла мне огромное количество радости и разочарований. Спасибо.
 
-        IPersonService personService = new PersonService();
-        IApartmentService apartmentService = new ApartmentService();
-        IBuildingService buildingService = new BuildingService();
-        IEntranceService entranceService = new EntranceService();
+        readonly IPersonService personService = new PersonService();
+        readonly IApartmentService apartmentService = new ApartmentService();
+        readonly IBuildingService buildingService = new BuildingService();
+        readonly IEntranceService entranceService = new EntranceService();
 
         SquarePrice squarePrice = new SquarePrice();
 
@@ -41,55 +41,121 @@ namespace District.WPF
         {
             InitializeComponent();
 
-            int n = 10;
+            int n = 100;
             List<string> sss = new List<string>();
             for (int i = 0; i < n; i++)
             {
                 sss.Add((i + 1).ToString());
             }
 
-            lb1.ItemsSource = null;
-            lb1.ItemsSource = sss;
+            ListBox_Persons.ItemsSource = null;
+            ListBox_Persons.ItemsSource = sss;
+
+            FindApartmentsByPersons.IsEnabled = false;
 
 
-            //lb1.ItemsSource = allPersons.Result;
-            //List<PersonModel> p = new List<PersonModel>();
-            //List<string> p = new List<string>();
-            //foreach (var person in allPersons.Result)
-            //{
-            //    p.Add(person.Name);
-            //}
-
-            //lb1.ItemsSource = p;
         }
+
+        
 
         private void Exit_Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private async void LoadPersons_Button_Click(object sender, RoutedEventArgs e)
         {
-            lb1.ItemsSource = null;
+            ListBox_Persons.ItemsSource = null;
 
-            var allPersons = personService.GetAllPersons();
+            Task<List<PersonModel>> allPersons = personService.GetAllPersons();
             //allPersons.Wait();
             await allPersons;
 
             List<string> allPersonsString = new List<string>();
 
             int allPersonsLength = allPersons.Result.Capacity;
+            List<PersonModel> allPersonsResult = allPersons.Result;
 
             for (int i = 0; i < allPersonsLength; i++)
             {
-                allPersonsString.Add(allPersons.Result[i].Name);
+                PersonModel pers = allPersonsResult[i];
+                allPersonsString.Add($"{pers.Name}");
             }
 
-            lb1.ItemsSource = allPersonsString;
+            ListBox_Persons.ItemsSource = allPersonsString;
+            
+            FindApartmentsByPersons.IsEnabled = true;
+
+        }
+
+        private async void Find_Apartments_by_Persons_Button_Click(object sender, RoutedEventArgs e)
+        {
+            int ListBox_Persons_SelectedItems_Count = ListBox_Persons.SelectedItems.Count;
+
+            Task<List<PersonModel>> allPersons = personService.GetAllPersons();
+            await allPersons;
+
+            //string s = "Name2";
+
+
+            List<PersonModel> allPersonsResult = allPersons.Result;
             
 
+            if (ListBox_Persons.SelectedItems.Count == 0)
+            {
+                TextBox_OutPut.Text = "There are no selected Persons";
+                MessageBox.Show("There are no selected Persons");
+            }
+            else
+            {
+                TextBox_OutPut.Text = "";
+
+                List<ApartmentModel> apartments = new List<ApartmentModel>();
+                List<string> apartmentsToString = new List<string>();
+
+                foreach (string selectedItem in ListBox_Persons.SelectedItems)
+                {
+                    TextBox_OutPut.Text = selectedItem.ToString();
+                    Task<PersonModel> somePerson = personService.FindPersonByName(selectedItem.ToString());
+                    await somePerson;
+
+                    Task<List<ApartmentModel>> apartmentsByPersonId = apartmentService.GetApartmentsByPersonId(somePerson.Result.Id);
+                    await apartmentsByPersonId;
+
+                    //apartments.AddRange(apartmentsByPersonId.Result);
+                    foreach (ApartmentModel ap in apartmentsByPersonId.Result)
+                    {
+                        apartments.Add(ap);
+                    }
 
 
+                    //if (selectedItem.ToString() == "Name2")
+                    //{
+                    //    TextBox_OutPut.Text = "Got it.";
+                    //}
+                }
+
+                foreach (var apartment in apartments)
+                {
+                    BuildingModel bm = new BuildingModel();
+                    Task<BuildingModel> bmTask = buildingService.GetByIdAsync(apartment.BuildingId);
+                    await bmTask;
+                    bm = bmTask.Result;
+
+
+                    PersonModel pm = new PersonModel();
+                    Task<PersonModel> pmTask = personService.GetByIdAsync(apartment.PersonId);
+                    await pmTask;
+                    pm = pmTask.Result;
+
+                    apartmentsToString.Add($"Building: {bm.BuildingNumber}, Apartment Number: {apartment.ApartmentNumber}, Own: {apartment.IsOwn}, Owner: {pm.Name}, Phone: {pm.PhoneNumber}, OrderDate: {apartment.OrderDate}");
+                    //apartmentsToString.Add("1");
+
+                }
+                ListBox_OutPut.ItemsSource = null;
+                ListBox_OutPut.ItemsSource = apartmentsToString;
+            }
+            //Close();
 
 
             ////string s = Console.ReadLine();
@@ -153,6 +219,5 @@ namespace District.WPF
             //    }
             //}
         }
-
     }
 }

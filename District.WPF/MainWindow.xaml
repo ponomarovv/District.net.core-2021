@@ -5,28 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:District.WPF"
         mc:Ignorable="d"
-        Title="District" Width="1000" Height="500" 
+        Title="District" Width="1200" Height="500" 
         ResizeMode="CanMinimize"
         >
+
     <Grid>
-        <TextBox HorizontalAlignment="Left" Margin="34,64,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="34,116,0,0" VerticalAlignment="Top" Height="37" Width="76" Click="Button_Click"/>
+        <Button Content="Load Persons" HorizontalAlignment="Left" Margin="21,291,0,0" VerticalAlignment="Top" Height="31" Width="76" Click="LoadPersons_Button_Click"/>
         <Button Content="Exit" HorizontalAlignment="Left" Margin="857,386,0,0" VerticalAlignment="Top" Width="90" Click="Exit_Button_Click"/>
-        <TextBlock HorizontalAlignment="Left" Margin="199,277,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="282,56,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="98,312,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="94,380,0,0" VerticalAlignment="Top" Width="120"/>
-        <RadioButton Content="RadioButton" HorizontalAlignment="Left" Margin="98,343,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="lb1" Margin="282,93,379,164" SelectionMode="Extended" >
+        <Button x:Name="FindApartmentsByPersons" Content="Find Apartments by Persons" HorizontalAlignment="Left" Margin="381,291,0,0" VerticalAlignment="Top" Width="232" Click="Find_Apartments_by_Persons_Button_Click" Height="31"/>
+
+        <Label Content="Persons" HorizontalAlignment="Left" Margin="21,9,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="ListBox_Persons" Margin="21,46,798,211" SelectionMode="Extended" >
 
         </ListBox>
+        <ListBox x:Name="ListBox_OutPut" Margin="418,46,21,211" SelectionMode="Extended">
+
+        </ListBox>
+        <Label Content="Apartments by Persons" HorizontalAlignment="Left" Margin="381,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TextBox_OutPut" HorizontalAlignment="Left" Margin="381,337,0,0" Text="&#xD;&#xA;" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="30"/>
 
 
     </Grid>
-
-
-
-
 
 
 </Window>

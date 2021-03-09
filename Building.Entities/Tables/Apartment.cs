@@ -16,7 +16,7 @@ namespace District.Entities.Tables
         public Building Building { get; set; }
 
         [ForeignKey(nameof(Person))]
-        public int? PersonId { get; set; }
+        public int PersonId { get; set; }
         public Person Person { get; set; }
 
         [ForeignKey(nameof(Entrance))]
