@@ -13,8 +13,8 @@ namespace District.Bl.Impl.Services
 {
     public class ApartmentService : IApartmentService
     {
-        public IApartmentRepository _apartmentRepository;
-        public ApartmentMapper _apartmentMapper;
+        private readonly IApartmentRepository _apartmentRepository;
+        private readonly ApartmentMapper _apartmentMapper;
         public ApartmentService()
         {
             _apartmentRepository = new ApartmentRepository();

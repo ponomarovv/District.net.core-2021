@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Building_BL\District.Bl.csproj" />
     <ProjectReference Include="..\District.Generators\District.Generators.csproj" />
+    <ProjectReference Include="..\District.Models\District.Models.csproj" />
   </ItemGroup>
 
 </Project>

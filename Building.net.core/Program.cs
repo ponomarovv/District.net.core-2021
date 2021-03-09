@@ -64,7 +64,7 @@ namespace District.CLI
 
             //find all
             var allPerson = personService.GetAllPersons();
-            somePerson.Wait();
+            allPerson.Wait();
             
             foreach (var person  in allPerson.Result)
             {

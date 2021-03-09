@@ -14,8 +14,8 @@ namespace District.Bl.Impl.Services
 {
     public class EntranceService : IEntranceService
     {
-        public IEntranceRepository _entranceRepository;
-        public EntranceMapper _entranceMapper;
+        private readonly IEntranceRepository _entranceRepository;
+        private readonly EntranceMapper _entranceMapper;
         public EntranceService()
         {
             _entranceRepository = new EntranceRepository();

@@ -15,8 +15,8 @@ namespace District.Bl.Impl.Services
 {
     public class BuildingService : IBuildingService
     {
-        public IBuildingRepository _buildingRepository;
-        public BuildingMapper _buildingMapper;
+        private readonly IBuildingRepository _buildingRepository;
+        private readonly BuildingMapper _buildingMapper;
         public BuildingService()
         {
             _buildingRepository = new BuildingReposirory();
