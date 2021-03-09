@@ -155,69 +155,6 @@ namespace District.WPF
                 ListBox_OutPut.ItemsSource = null;
                 ListBox_OutPut.ItemsSource = apartmentsToString;
             }
-            //Close();
-
-
-            ////string s = Console.ReadLine();
-
-            ////string someName = "Building Creator";
-            //string someName = "Name2";
-
-            ////while (true)
-            ////{
-            ////    Task<List<PersonModel>> persons = personService.GetAllPersons();
-            ////    persons.Wait();
-            ////    foreach (var person in persons.Result)
-            ////    {
-            ////        if (person.Name == someName)
-            ////        {
-            ////            break;
-            ////        }
-            ////        Console.WriteLine($"{person.Id}, {person.Name}, {person.PhoneNumber}");
-            ////    }
-            ////}
-            ////squarePrice.priceForOneM2 = 100;
-
-            //var somePerson = personService.FindPersonByName(someName);
-            //somePerson.Wait();
-
-            //var foundApartments = apartmentService.GetApartmentsByPersonId(somePerson.Result.Id);
-            //foundApartments.Wait();
-
-            //List<ApartmentModel> aps = new List<ApartmentModel>();
-            //foreach (var apartment in foundApartments.Result)
-            //{
-            //    //var tempBuilding = buildingService.GetByIdAsync(apartment.BuildingId);
-            //    //tempBuilding.Wait();
-            //    //Console.WriteLine($"{somePerson.Result.Name}, {tempBuilding.Result.BuildingNumber} , {apartment.ApartmentNumber},  {apartment.SquareSize}, {apartment.SquareSize * squarePrice.priceForOneM2}, {apartment.OrderDate}, {somePerson.Result.PhoneNumber}");
-
-
-            //    aps.Add(apartment);
-            //}
-
-            //lb1.ItemsSource = aps;
-
-
-
-            ////find all
-            //var allPerson = personService.GetAllPersons();
-            //somePerson.Wait();
-
-            //foreach (var person in allPerson.Result)
-            //{
-            //    if (person.Id == 1)
-            //    {
-            //        continue;
-            //    }
-            //    var personApartments = apartmentService.GetApartmentsByPersonId(person.Id);
-            //    personApartments.Wait();
-            //    foreach (var personApartment in personApartments.Result)
-            //    {
-            //        var tempBuilding = buildingService.GetByIdAsync(personApartment.BuildingId);
-            //        tempBuilding.Wait();
-            //        Console.WriteLine($"{person.Name}, {tempBuilding.Result.BuildingNumber}, {personApartment.ApartmentNumber},  {personApartment.OrderDate}, {person.PhoneNumber} {personApartment.SquareSize}, {personApartment.SquareSize * squarePrice.priceForOneM2},");
-            //    }
-            //}
         }
     }
 }

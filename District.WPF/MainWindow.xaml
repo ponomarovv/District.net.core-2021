@@ -21,7 +21,7 @@
         <ListBox x:Name="ListBox_OutPut" Margin="418,46,21,211" SelectionMode="Extended">
 
         </ListBox>
-        <Label Content="Apartments by Persons" HorizontalAlignment="Left" Margin="381,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Apartments by Persons" HorizontalAlignment="Left" Margin="418,10,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="TextBox_OutPut" HorizontalAlignment="Left" Margin="381,337,0,0" Text="&#xD;&#xA;" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="30"/>
 
 
