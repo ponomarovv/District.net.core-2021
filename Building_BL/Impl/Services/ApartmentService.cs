@@ -63,9 +63,5 @@ namespace District.Bl.Impl.Services
         {
             return ((await _apartmentRepository.GetApartmentsByPersonId(personId)).Select(_apartmentMapper.Map)).ToList();
         }
-
-
-
-
     }
 }

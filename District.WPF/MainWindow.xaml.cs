@@ -1,19 +1,48 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 using District.Bl.Abstract.IServices;
 using District.Bl.Impl.Services;
-using District.Models.Models;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using District.Generators;
 
-
-namespace District.CLI
+namespace District.WPF
 {
-    class Program
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
     {
+        IPersonService personService = new PersonService();
+        IApartmentService apartmentService = new ApartmentService();
+        IBuildingService buildingService = new BuildingService();
 
-        static void Main(string[] args)
+
+        public MainWindow()
+        {
+            InitializeComponent();
+
+
+
+
+        }
+
+        private void Exit_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             //Эта трехуровневая архитектура буквально выпила мою душу. Она принесла мне огромное количество радости и разочарований. Спасибо.
 
@@ -23,9 +52,7 @@ namespace District.CLI
             //var res = generator.CreateBuildings(4);
             //res.Wait();
 
-            IPersonService personService = new PersonService();
-            IApartmentService apartmentService = new ApartmentService();
-            IBuildingService buildingService = new BuildingService();
+
 
             //Console.WriteLine("Enter someName please:");
             //string s = Console.ReadLine();
@@ -59,14 +86,15 @@ namespace District.CLI
                 var tempBuilding = buildingService.GetByIdAsync(apartment.BuildingId);
                 tempBuilding.Wait();
                 Console.WriteLine($"{somePerson.Result.Name}, {tempBuilding.Result.BuildingNumber} , {apartment.ApartmentNumber},  {apartment.SquareSize}, {apartment.SquareSize * squarePrice.priceForOneM2}, {apartment.OrderDate}, {somePerson.Result.PhoneNumber}");
+                //lb1.
             }
             Console.WriteLine();
 
             //find all
             var allPerson = personService.GetAllPersons();
             somePerson.Wait();
-            
-            foreach (var person  in allPerson.Result)
+
+            foreach (var person in allPerson.Result)
             {
                 if (person.Id == 1)
                 {
@@ -81,77 +109,8 @@ namespace District.CLI
                     Console.WriteLine($"{person.Name}, {tempBuilding.Result.BuildingNumber}, {personApartment.ApartmentNumber},  {personApartment.OrderDate}, {person.PhoneNumber} {personApartment.SquareSize}, {personApartment.SquareSize * squarePrice.priceForOneM2},");
                 }
             }
-            
-            
-            //
-
-            //var item = personService.CreatePerson(new PersonModel
-            //{
-            //    Id = 2,
-            //    Name = "Name1",
-            //    PhoneNumber = 0670000001,
-            //});
-            //item.Wait();
-
-            // Buy apartment
-            //var person = personService.BuyAppartment(3, 9);
-            //person.Wait();
-
-            //var item2 = personService.CreatePerson(new PersonModel
-            //{
-            //    Id = 3,
-            //    Name = "Name3",
-            //    PhoneNumber = 0670000003,
-            //});
-            //item2.Wait();
-
-
-
-
-
-            //var res = apartmentService.CreateApartment(new ApartmentModel()
-            //{
-            //    ApartmentNumber = 1,
-            //    BuildingId = 1,
-            //    IsOwn = false,
-            //    SquareSize = 12,
-            //    EntranceId = 1,
-            //    PersonId = 1,
-            //});
-            //res.Wait();
-            //Task<List<ApartmentModel>> apartments = apartmentService.GetAllApartments();
-            //apartments.Wait();
-            //foreach (var apartment in apartments.Result)
-            //{
-            //    Console.WriteLine($"{apartment.ApartmentNumber}, {apartment.SquareSize}, {apartment.IsOwn} ");
-            //}
-
-
-            //IPersonService personService = new PersonService();
-            ////var res = personService.CreatePerson(new PersonModel()
-            ////{
-            ////    //Id = 0,
-            ////    Name = "Name2",
-            ////    PhoneNumber = 0670000002,
-            ////});
-            ////res.Wait();
-
-            ////res = personService.
-            ////res.Wait();
-
-            //Task<List<PersonModel>> persons = personService.GetAllPersons();
-            //persons.Wait();
-            //foreach (var person in persons.Result)
-            //{
-            //    Console.WriteLine($"{person.Id}, {person.Name}, {person.PhoneNumber}");
-            //}
-
-
-
-            Console.WriteLine("End of program");
-            Console.ReadLine();
         }
+
+
     }
 }
-
-

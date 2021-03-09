@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "District.Entities", "Buildi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "District.Models", "District.Models\District.Models.csproj", "{CAAD85A5-70C8-4206-9276-0F47E2C78558}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "District.WPF", "District.WPF\District.WPF.csproj", "{FB0015C1-1BD4-4A8A-93DC-1A765322CDE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "District.Generators", "District.Generators\District.Generators.csproj", "{AC711D5B-D8BB-4FFC-8000-AA6348D1BFCB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{CAAD85A5-70C8-4206-9276-0F47E2C78558}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAAD85A5-70C8-4206-9276-0F47E2C78558}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAAD85A5-70C8-4206-9276-0F47E2C78558}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB0015C1-1BD4-4A8A-93DC-1A765322CDE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB0015C1-1BD4-4A8A-93DC-1A765322CDE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB0015C1-1BD4-4A8A-93DC-1A765322CDE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB0015C1-1BD4-4A8A-93DC-1A765322CDE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC711D5B-D8BB-4FFC-8000-AA6348D1BFCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC711D5B-D8BB-4FFC-8000-AA6348D1BFCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC711D5B-D8BB-4FFC-8000-AA6348D1BFCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC711D5B-D8BB-4FFC-8000-AA6348D1BFCB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace District.CLI
+namespace District.Generators
 {
     public class Generator
     {

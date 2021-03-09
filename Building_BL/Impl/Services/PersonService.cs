@@ -15,10 +15,10 @@ namespace District.Bl.Impl.Services
 {
     public class PersonService : IPersonService
     {
-        public IPersonRepository _personRepository;
-        public PersonMapper _personMapper;
+        private readonly IPersonRepository _personRepository;
+        private readonly PersonMapper _personMapper;
 
-        public IApartmentRepository _apartmentRepository;
+        private readonly IApartmentRepository _apartmentRepository;
 
         public PersonService()
         {

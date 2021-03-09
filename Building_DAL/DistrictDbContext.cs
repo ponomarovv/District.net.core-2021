@@ -22,5 +22,4 @@ namespace District.Dal
         public DbSet<Person> Persons { get; set; }
         public DbSet<Entrance> Entrances { get; set; }
     }
-
 }

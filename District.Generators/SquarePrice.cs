@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace District.CLI
+namespace District.Generators
 {
     public class SquarePrice
     {
