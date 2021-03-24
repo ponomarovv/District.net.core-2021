@@ -3,15 +3,17 @@ using System;
 using District.Dal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace District.Dal.Migrations
 {
     [DbContext(typeof(DistrictDbContext))]
-    partial class DistrictDbCondextModelSnapshot : ModelSnapshot
+    [Migration("20210324122830_WPF_Generators_Load")]
+    partial class WPF_Generators_Load
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

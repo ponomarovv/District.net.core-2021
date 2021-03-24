@@ -63,7 +63,16 @@ namespace District.Bl.Impl.Services
 
         public async Task<PersonModel> FindPersonByName(string name)
         {
-            var result =  _personMapper.Map(await _personRepository.FindPersonByName(name));
+
+
+            PersonModel result =  _personMapper.Map(await _personRepository.FindPersonByName(name));
+
+            //if (result == null)
+            //{
+            //    PersonModel noneModel2 = new PersonModel() { };
+            //    return noneModel2;
+            //}
+            
             //if (result == null)
             //{
             //    Console.WriteLine("Nothing found");

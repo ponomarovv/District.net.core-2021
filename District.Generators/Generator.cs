@@ -43,18 +43,28 @@ namespace District.Generators
         public async Task CreateAppartments(int buildingId, int entranceId, int countApartments)
         {
             IApartmentService apartmentService = new ApartmentService();
+
+            IEntranceService entrancetService = new EntranceService();
+            int entranceNumber = entrancetService.GetByIdAsync(entranceId).Result.EntranceNumber;
+
             Random Rand = new Random();
             for (int i = 0; i < countApartments; i++)
             {
+                int apartmentByEntranceCounter = (entranceNumber - 1) * 75;
+
+                
                 var res = await apartmentService.CreateApartment(new ApartmentModel()
                 {
                     BuildingId = buildingId,
                     EntranceId = entranceId,
                     IsOwn = false,
                     SquareSize = Rand.Next(50, 100),
-                    ApartmentNumber = i + 1,
+                    ApartmentNumber = i + 1 + apartmentByEntranceCounter,
                     PersonId = 1,
                 });
+
+
+
             }
         }
     }

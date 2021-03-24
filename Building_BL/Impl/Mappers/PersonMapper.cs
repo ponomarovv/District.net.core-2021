@@ -11,6 +11,11 @@ namespace District.Bl.Impl.Mappers
     {
         public PersonModel Map(Person entity)
         {
+            if (entity == null)
+            {
+                return new PersonModel() { };
+            }
+
             return new PersonModel
             {
                 Id = entity.Id,

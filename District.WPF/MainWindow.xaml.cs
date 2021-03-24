@@ -41,6 +41,8 @@ namespace District.WPF
         {
             InitializeComponent();
 
+
+
             int n = 100;
             List<string> sss = new List<string>();
             for (int i = 0; i < n; i++)
@@ -65,6 +67,13 @@ namespace District.WPF
 
         private async void LoadPersons_Button_Click(object sender, RoutedEventArgs e)
         {
+            //MessageBox.Show("Begin");
+            //Generator generator = new Generator();
+            //var res = generator.CreateBuildings(4);
+            //await res;
+            //MessageBox.Show("END");
+
+
             ListBox_Persons.ItemsSource = null;
 
             Task<List<PersonModel>> allPersons = personService.GetAllPersons();
@@ -72,9 +81,9 @@ namespace District.WPF
             await allPersons;
 
             List<string> allPersonsString = new List<string>();
-
-            int allPersonsLength = allPersons.Result.Capacity;
+            
             List<PersonModel> allPersonsResult = allPersons.Result;
+            int allPersonsLength = allPersons.Result.Capacity;
 
             for (int i = 0; i < allPersonsLength; i++)
             {

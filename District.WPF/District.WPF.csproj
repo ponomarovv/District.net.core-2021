@@ -14,13 +14,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Building_BL\District.Bl.csproj" />
-    <ProjectReference Include="..\District.Generators\District.Generators.csproj" />
-    <ProjectReference Include="..\District.Models\District.Models.csproj" />
+    <Folder Include="Commands\Base\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\Base\" />
+    <ProjectReference Include="..\Building_BL\District.Bl.csproj" />
+    <ProjectReference Include="..\District.Generators\District.Generators.csproj" />
+    <ProjectReference Include="..\District.Models\District.Models.csproj" />
   </ItemGroup>
 
 </Project>
