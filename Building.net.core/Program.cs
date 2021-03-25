@@ -12,13 +12,20 @@ namespace District.CLI
 {
     class Program
     {
+        static void SomeApartmentToName2()
+        {
+
+
+            Console.WriteLine("Do not press enter");
+            Console.ReadLine();
+        }
 
         static void Main(string[] args)
         {
             //Эта трехуровневая архитектура буквально выпила мою душу. Она принесла мне огромное количество радости и разочарований. Спасибо.
 
 
-
+            SomeApartmentToName2();
             //Generator generator = new Generator();
             //var res = generator.CreateBuildings(4);
             //res.Wait();
@@ -33,19 +40,7 @@ namespace District.CLI
             //string someName = "Building Creator";
             string someName = "Name2";
 
-            //while (true)
-            //{
-            //    Task<List<PersonModel>> persons = personService.GetAllPersons();
-            //    persons.Wait();
-            //    foreach (var person in persons.Result)
-            //    {
-            //        if (person.Name == someName)
-            //        {
-            //            break;
-            //        }
-            //        Console.WriteLine($"{person.Id}, {person.Name}, {person.PhoneNumber}");
-            //    }
-            //}
+
             SquarePrice squarePrice = new SquarePrice();
             //squarePrice.priceForOneM2 = 100;
 
