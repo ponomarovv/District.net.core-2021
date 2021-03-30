@@ -12,11 +12,14 @@ namespace District.CLI
 {
     class Program
     {
-        static void SomeApartmentToName2()
+        static async Task SomeApartmentToName2()
         {
-
+            IPersonService personService = new PersonService();
+            await personService.BuyApartment(2, 1);
+            await personService.BuyApartment(2, 3);
 
             Console.WriteLine("Do not press enter");
+            return;
             Console.ReadLine();
         }
 
@@ -25,7 +28,8 @@ namespace District.CLI
             //Эта трехуровневая архитектура буквально выпила мою душу. Она принесла мне огромное количество радости и разочарований. Спасибо.
 
 
-            SomeApartmentToName2();
+
+            
             //Generator generator = new Generator();
             //var res = generator.CreateBuildings(4);
             //res.Wait();
@@ -89,7 +93,7 @@ namespace District.CLI
             //item.Wait();
 
             // Buy apartment
-            //var person = personService.BuyAppartment(3, 9);
+            //var person = personService.BuyApartment(3, 9);
             //person.Wait();
 
             //var item2 = personService.CreatePerson(new PersonModel

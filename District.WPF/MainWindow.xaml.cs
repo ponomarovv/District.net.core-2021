@@ -157,7 +157,8 @@ namespace District.WPF
                     await pmTask;
                     pm = pmTask.Result;
 
-                    apartmentsToString.Add($"Building: {bm.BuildingNumber}, Apartment Number: {apartment.ApartmentNumber}, Own: {apartment.IsOwn}, Owner: {pm.Name}, Phone: {pm.PhoneNumber}, OrderDate: {apartment.OrderDate}");
+                    TextBox_OutPut.Text = pm.Name + "                         777";
+                    apartmentsToString.Add($"Building: {bm.BuildingNumber}, Apartment Number: {apartment.ApartmentNumber}, Own: {apartment.IsOwn}, Owner: {pm.Name}, Phone: {pm.PhoneNumber.ToString()}, OrderDate: {apartment.OrderDate}");
                     //apartmentsToString.Add("1");
 
                 }

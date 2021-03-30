@@ -11,7 +11,7 @@ namespace District.Generators
 {
     public class Generator
     {
-        public async Task CreateBuildings(int countBuildings)
+        public async Task CreateBuildings(int countBuildings, int countEntrances)
         {
             IBuildingService buildingService = new BuildingService();
             for (int i = 0; i < countBuildings; i++)
@@ -21,7 +21,7 @@ namespace District.Generators
                     BuildingNumber = i + 1,
 
                 });
-                await CreateEntrances(res.Id, 2);
+                await CreateEntrances(res.Id, countEntrances);
             }
         }
 

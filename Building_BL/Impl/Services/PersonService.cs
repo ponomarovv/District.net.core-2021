@@ -42,7 +42,7 @@ namespace District.Bl.Impl.Services
             await _personRepository.DeleteAsync(id);
         }
 
-        public async Task BuyAppartment(int personId, int apartmentId)
+        public async Task BuyApartment(int personId, int apartmentId)
         {
             Apartment item = await _apartmentRepository.GetByIdAsync(apartmentId);
             item.PersonId = personId;
@@ -50,12 +50,20 @@ namespace District.Bl.Impl.Services
             {
                 item.IsOwn = true;
             }
+            else
+            {
+                item.IsOwn = false;
+            }
             item.OrderDate = DateTime.Now;
             await _apartmentRepository.UpdateAsync(item);
         }
         public async Task<PersonModel> GetByIdAsync(int id)
         {
             var item = await _personRepository.GetByIdAsync(id);
+            if (item == null)
+            {
+                return new PersonModel() { };
+            }
 
             return _personMapper.Map(item);
         }

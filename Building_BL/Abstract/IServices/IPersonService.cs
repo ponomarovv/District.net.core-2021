@@ -15,7 +15,7 @@ namespace District.Bl.Abstract.IServices
         Task DeletePerson(int id);
 
         Task<List<PersonModel>> GetAllPersons();
-        Task BuyAppartment(int personId, int apartmentId);
+        Task BuyApartment(int personId, int apartmentId);
 
         Task<PersonModel> FindPersonByName(string name);
 
