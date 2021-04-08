@@ -1,0 +1,63 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:f="clr-namespace:MVVMExample.UI.Controls"
+                    xmlns:local="clr-namespace:MVVMExample.UI.Styles">
+    <Style  TargetType="{x:Type f:WaterMarkTextBox}">
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type f:WaterMarkTextBox}">
+
+                    <Grid>
+                                <Border Background="White" BorderBrush="#FF7D8683" BorderThickness="1"/>
+                                <ScrollViewer x:Name="PART_ContentHost" Margin="5,0,0,0"
+                                              VerticalAlignment="Center" />
+                        <Label Margin="5,0,0,0"
+                               x:Name="WaterMarkLabel" 
+                               Content="{TemplateBinding WaterMark}"
+                               VerticalAlignment="Center"
+                               Visibility="Collapsed" Foreground="Gray" FontFamily="Arial"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="Text" Value=""/>
+                                    </MultiTrigger.Conditions>
+                                    <Setter Property="Visibility" TargetName="WaterMarkLabel" Value="Visible"/>
+                                </MultiTrigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Foreground" Value="DimGray"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                            
+                            
+                            <!--<TextBox x:Name="Textbox"
+                                  Text="{TemplateBinding Text}"
+                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                   Width="{TemplateBinding ActualWidth}"                            
+                                   Height="50"      
+                                     
+                                   FontSize="{TemplateBinding FontSize}"
+                                   Foreground="{TemplateBinding Foreground}">
+                            </TextBox>
+                            <Label x:Name="WaterMark"
+                                 Content="{TemplateBinding WaterMark}"
+                                 Foreground="{TemplateBinding WaterMarkColor}"                                
+                                 Width="{TemplateBinding ActualWidth}"                            
+                                 Height="{TemplateBinding ActualHeight}" 
+                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                 IsHitTestVisible="False"
+                                 IsTabStop="False"
+                                 FontSize="{TemplateBinding FontSize}">
+                                <Label.Visibility>
+                                    <MultiBinding Converter="{StaticResource MultiVisibilityConvertor}">
+                                        <Binding ElementName="Textbox" Path="Text"  />
+                                    </MultiBinding>
+                                </Label.Visibility>
+                            </Label>-->
+                    
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
