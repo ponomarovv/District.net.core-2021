@@ -1,33 +1,49 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
+using System.Linq;
+using District.Bl.Abstract.IServices;
+using District.Bl.Impl.Services;
+using District.Models.Models;
 
 namespace MVVM
 {
     public class ApplicationViewModel : INotifyPropertyChanged
     {
-        private Phone selectedPhone;
+        private ApartmentModel _selectedApartment;
+        private IApartmentService _apartmentService;
+        private ObservableCollection<ApartmentModel> _apartments;
 
-        public ObservableCollection<Phone> Phones { get; set; }
-        public Phone SelectedPhone
+        public ObservableCollection<ApartmentModel> Apartments
         {
-            get { return selectedPhone; }
+            get => _apartments;
             set
             {
-                selectedPhone = value;
-                OnPropertyChanged("SelectedPhone");
+                _apartments = value;
+                OnPropertyChanged(nameof(Apartments));
+            } 
+        }
+
+        public ApartmentModel SelectedApartment
+        {
+            get { return _selectedApartment; }
+            set
+            {
+                _selectedApartment = value;
+                OnPropertyChanged("SelectedApartment");
             }
         }
 
         public ApplicationViewModel()
         {
-            Phones = new ObservableCollection<Phone>
-            {
-                new Phone { Title="iPhone 7", Company="Apple", Price=56000 },
-                new Phone {Title="Galaxy S7 Edge", Company="Samsung", Price =60000 },
-                new Phone {Title="Elite x3", Company="HP", Price=56000 },
-                new Phone {Title="Mi5S", Company="Xiaomi", Price=35000 }
-            };
+            InitData();
+        }
+
+        private async void InitData()
+        {
+            _apartmentService = new ApartmentService();
+            var collection = await _apartmentService.GetAllApartments();
+            Apartments = new ObservableCollection<ApartmentModel>(collection);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
