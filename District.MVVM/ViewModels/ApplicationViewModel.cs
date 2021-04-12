@@ -14,6 +14,11 @@ namespace MVVM
         private IApartmentService _apartmentService;
         private ObservableCollection<ApartmentModel> _apartments;
 
+        private PersonModel _selectedPerson;
+        private IPersonService _personService;
+        private ObservableCollection<PersonModel> _persons;
+
+
         public ObservableCollection<ApartmentModel> Apartments
         {
             get => _apartments;
@@ -26,7 +31,14 @@ namespace MVVM
 
         public ApartmentModel SelectedApartment
         {
-            get { return _selectedApartment; }
+            get
+            {
+                if (_selectedApartment == null) 
+                {
+                    return new ApartmentModel();
+                }
+                return _selectedApartment;
+            }
             set
             {
                 _selectedApartment = value;
@@ -42,8 +54,13 @@ namespace MVVM
         private async void InitData()
         {
             _apartmentService = new ApartmentService();
-            var collection = await _apartmentService.GetAllApartments();
-            Apartments = new ObservableCollection<ApartmentModel>(collection);
+            var allApartments = await _apartmentService.GetAllApartments();
+            Apartments = new ObservableCollection<ApartmentModel>(allApartments);
+
+            _personService = new PersonService();
+            var collection = await _personService.GetAllPersons();
+            //Persons = new ObservableCollection<PersonModel>(collection);
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

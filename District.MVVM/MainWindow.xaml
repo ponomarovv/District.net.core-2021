@@ -4,9 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:District.MVVM"
+
+        xmlns:cmd="clr-namespace:District.MVVM.Commands"
+
+        xmlns:l="clr-namespace:District.MVVM"
+
         mc:Ignorable="d"
 
-        Title="MainWindow" Height="350" Width="525">
+
+
+        Title="MainWindow" MinHeight="750" MinWidth="1025" Height="750" Width="1025">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="14" />
@@ -14,34 +21,56 @@
         <Style TargetType="TextBox">
             <Setter Property="FontSize" Value="14" />
         </Style>
+        
+        
     </Window.Resources>
-    <Grid>
+    <Grid x:Name="Grid1">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="0.8*" />
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height = "20"></RowDefinition>
+            <RowDefinition Height = "*"></RowDefinition>
+        </Grid.RowDefinitions>
 
-        <ListBox Grid.Column="0" ItemsSource="{Binding Apartments}"
+        <TextBlock Text="Apartments" />
+        <ListBox x:Name="lb1" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Apartments}"
                  SelectedItem="{Binding SelectedApartment}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="5">
-                        <TextBlock FontSize="18" Text="{Binding Path=Id}" />
-                        <TextBlock Text="{Binding Path=ApartmentNumber}" />
+
+                        <TextBlock Text="Building" />
                         <TextBlock Text="{Binding Path=BuildingId}" />
+
+
+                        <TextBlock Text="ApartmentNumber" />
+                        <TextBlock Text="{Binding Path=ApartmentNumber}" />
+
+                        <TextBlock Text="ID" />
+                        <TextBlock Text= "{Binding Path=Id}" />
+
+
+
+
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <!--<StackPanel Grid.Column="1" DataContext="{Binding SelectedPhone}">
-            <TextBlock Text="Выбранный элемент"  />
-            <TextBlock Text="Модель" />
-            <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
+        <StackPanel Grid.Column="1" Grid.RowSpan="2" DataContext="{Binding SelectedApartment}">
+            <TextBlock Text="Persons"  />
+            <TextBlock Text="ID" />
+            <TextBox Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock Text="Производитель" />
-            <TextBox Text="{Binding Company, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Text="{Binding ApartmentNumber, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock Text="Цена" />
-            <TextBox Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" />
-        </StackPanel>-->
+            <TextBox Text="{Binding BuildingId, UpdateSourceTrigger=PropertyChanged}" />
+
+
+            <Button VerticalContentAlignment="Bottom" HorizontalAlignment="Right" Command="{Binding CloseApplicationCommand}"  >Close</Button>
+
+        </StackPanel>
     </Grid>
 </Window>
