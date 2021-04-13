@@ -1,0 +1,31 @@
+﻿<Window x:Class="District.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:District.WPF"
+        mc:Ignorable="d"
+        Title="District" Width="1200" Height="500" 
+        ResizeMode="CanMinimize"
+        >
+
+    <Grid>
+        <Button Content="Load Persons" HorizontalAlignment="Left" Margin="21,291,0,0" VerticalAlignment="Top" Height="31" Width="76" Click="LoadPersons_Button_Click"/>
+        <Button Content="Exit" HorizontalAlignment="Left" Margin="857,386,0,0" VerticalAlignment="Top" Width="90" Click="Exit_Button_Click"/>
+        <Button x:Name="FindApartmentsByPersons" Content="Find Apartments by Persons" HorizontalAlignment="Left" Margin="381,291,0,0" VerticalAlignment="Top" Width="232" Click="Find_Apartments_by_Persons_Button_Click" Height="31"/>
+
+        <Label Content="Persons" HorizontalAlignment="Left" Margin="21,9,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="ListBox_Persons" Margin="21,46,798,211" SelectionMode="Extended" >
+
+        </ListBox>
+        <ListBox x:Name="ListBox_OutPut" Margin="418,46,21,211" SelectionMode="Extended">
+
+        </ListBox>
+        <Label Content="Apartments by Persons" HorizontalAlignment="Left" Margin="418,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TextBox_OutPut" HorizontalAlignment="Left" Margin="381,337,0,0" Text="&#xD;&#xA;" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="30"/>
+
+
+    </Grid>
+
+
+</Window>

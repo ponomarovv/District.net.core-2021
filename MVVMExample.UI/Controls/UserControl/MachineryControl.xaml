@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="MVVMExample.UI.Controls.UserControl.MachineryControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MVVMExample.UI.Controls.UserControl"
+             DataContext="{Binding Main.ContentViewModel.SelectProduct, Source={StaticResource Locator}}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="Red">
+        <StackPanel Orientation="Vertical" >
+            <TextBlock FontSize="30"
+                       HorizontalAlignment="Center"
+                       Text="MachineryControl"
+                       FontStretch="ExtraCondensed" 
+                       FontWeight="Bold"></TextBlock>
+
+            <StackPanel Orientation="Horizontal" >
+                <TextBlock FontSize="30"
+                       HorizontalAlignment="Left"
+                       Text="Назва:"
+                           Margin="20,10"
+                       FontStretch="ExtraCondensed" 
+                       FontWeight="Bold"></TextBlock>
+                <TextBlock FontSize="30"
+                       HorizontalAlignment="Left"
+                       Text="{Binding Name}"
+                           Margin="20,10"
+                       FontStretch="ExtraCondensed" 
+                       FontWeight="Bold"></TextBlock>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" >
+                <TextBlock FontSize="30"
+                       HorizontalAlignment="Left"
+                       Text="Опис:"
+                           Margin="20,10"
+                       FontStretch="ExtraCondensed" 
+                       FontWeight="Bold"></TextBlock>
+                <TextBlock FontSize="30"
+                       HorizontalAlignment="Left"
+                       Text="{Binding Description}"
+                           Margin="20,10"
+                       FontStretch="ExtraCondensed" 
+                       FontWeight="Bold"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" >
+                <TextBlock FontSize="30"
+                       HorizontalAlignment="Left"
+                       Text="Ціна:"
+                           Margin="20,10"
+                       FontStretch="ExtraCondensed" 
+                       FontWeight="Bold"></TextBlock>
+                <TextBlock FontSize="30"
+                       HorizontalAlignment="Left"
+                       Text="{Binding Price}"
+                           Margin="20,10"
+                       FontStretch="ExtraCondensed" 
+                       FontWeight="Bold"></TextBlock>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
