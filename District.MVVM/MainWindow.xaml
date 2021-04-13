@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:District.MVVM"
         mc:Ignorable="d"
 
-        Title="Distict" Height="550" Width="925">
+        Title="Distict" Height="555" Width="925">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="14" />
