@@ -59,16 +59,22 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <StackPanel Grid.Column="1" Grid.RowSpan="2" DataContext="{Binding SelectedApartment}">
+        <StackPanel Grid.Column="1" Grid.RowSpan="2" >
             <TextBlock Text="Persons"  />
-            <TextBlock Text="ID" />
-            <TextBox Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBlock Text="Производитель" />
-            <TextBox Text="{Binding ApartmentNumber, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBlock Text="Цена" />
-            <TextBox Text="{Binding BuildingId, UpdateSourceTrigger=PropertyChanged}" />
+            <ListBox   ItemsSource="{Binding Persons}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="5">
+
+                            <TextBlock Text="Name" />
+                            <TextBlock Text="{Binding Path=Name}" />
 
 
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
             <Button VerticalContentAlignment="Bottom" HorizontalAlignment="Right" Command="{Binding CloseApplicationCommand}"  >Close</Button>
 
         </StackPanel>

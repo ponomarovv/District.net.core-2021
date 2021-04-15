@@ -1,7 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using District.Bl.Abstract.IServices;
 using District.Bl.Impl.Services;
 using District.Models.Models;
@@ -18,7 +20,6 @@ namespace MVVM
         private IPersonService _personService;
         private ObservableCollection<PersonModel> _persons;
 
-
         public ObservableCollection<ApartmentModel> Apartments
         {
             get => _apartments;
@@ -33,18 +34,33 @@ namespace MVVM
         {
             get
             {
-                if (_selectedApartment == null) 
-                {
-                    return new ApartmentModel();
-                }
+                //if (_selectedApartment == null) 
+                //{
+                //    return new ApartmentModel();
+                //}
                 return _selectedApartment;
             }
             set
             {
+                
                 _selectedApartment = value;
                 OnPropertyChanged("SelectedApartment");
+
+                SetSelectedPersonModel(SelectedApartment);
             }
         }
+
+        public ObservableCollection<PersonModel> Persons
+        {
+            get => _persons;
+            set
+            {
+                _persons = value;
+                OnPropertyChanged(nameof(Persons));
+            }
+        }
+
+
 
         public ApplicationViewModel()
         {
@@ -54,13 +70,20 @@ namespace MVVM
         private async void InitData()
         {
             _apartmentService = new ApartmentService();
+            _personService = new PersonService();
             var allApartments = await _apartmentService.GetAllApartments();
             Apartments = new ObservableCollection<ApartmentModel>(allApartments);
 
-            _personService = new PersonService();
-            var collection = await _personService.GetAllPersons();
-            //Persons = new ObservableCollection<PersonModel>(collection);
+            //_personService = new PersonService();
+            //var personOfApartment = await _personService.GetByIdAsync(SelectedApartment.PersonId);
+            //Persons = new ObservableCollection<PersonModel>();
+            //Persons.Add(personOfApartment);
+        }
 
+        public async Task SetSelectedPersonModel(ApartmentModel selectedApartment)
+        {
+            var personOfApartment = await _personService.GetByIdAsync(selectedApartment.PersonId);
+            Persons = new ObservableCollection<PersonModel>() { personOfApartment };
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
