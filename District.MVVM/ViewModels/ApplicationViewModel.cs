@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using District.Bl.Abstract.IServices;
 using District.Bl.Impl.Services;
 using District.Models.Models;
@@ -60,7 +61,21 @@ namespace MVVM
             }
         }
 
+        private RelayCommand _closeCommand;
+        public RelayCommand CloseCommand
+        {
+            get
+            {
+                return _closeCommand ??
+                       (_closeCommand = new RelayCommand(obj =>
+                       {
+                           Application.Current.Shutdown();
+                       }));
+            }
+        }
 
+
+ 
 
         public ApplicationViewModel()
         {

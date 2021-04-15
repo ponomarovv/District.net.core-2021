@@ -75,7 +75,7 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <Button VerticalContentAlignment="Bottom" HorizontalAlignment="Right" Command="{Binding CloseApplicationCommand}"  >Close</Button>
+            <Button VerticalContentAlignment="Bottom" HorizontalAlignment="Right" Command="{Binding CloseCommand}"  >Close</Button>
 
         </StackPanel>
     </Grid>
