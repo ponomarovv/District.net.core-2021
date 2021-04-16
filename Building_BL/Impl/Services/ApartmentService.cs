@@ -23,7 +23,7 @@ namespace District.Bl.Impl.Services
 
         public async Task<ApartmentModel> CreateApartment(ApartmentModel model)
         {
-            return  _apartmentMapper.Map(await _apartmentRepository.AddAsync(_apartmentMapper.MapBack(model)));
+            return _apartmentMapper.Map(await _apartmentRepository.AddAsync(_apartmentMapper.MapBack(model)));
         }
         public async Task<ApartmentModel> GetByIdAsync(int id)
         {
@@ -44,7 +44,26 @@ namespace District.Bl.Impl.Services
 
         public async Task<List<ApartmentModel>> GetAllApartments()
         {
-            List<ApartmentModel> apartments =  (await _apartmentRepository.GetAllAsync()).Select(_apartmentMapper.Map).ToList();
+            List<ApartmentModel> apartments = (await _apartmentRepository.GetAllAsync()).Select(_apartmentMapper.Map).ToList();
+
+            int apartmentsLength = apartments.Count;
+
+            ApartmentModel tempApartmentModelModel = new ApartmentModel();
+
+            for (int i = 0; i < apartmentsLength; i++) 
+            {
+                for (int j = 0; j < apartmentsLength; j++)
+                {
+                    if (apartments[i].Id < apartments[j].Id)
+                    {
+                        tempApartmentModelModel = apartments[i];
+                        apartments[i] = apartments[j];
+                        apartments[j] = tempApartmentModelModel;
+                    }
+                    
+                }
+            }
+
 
             //var result = await _apartmentRepository.GetAllAsync();
             //List<ApartmentModel> apartmentModels = new List<ApartmentModel>();

@@ -17,7 +17,7 @@ namespace MVVM
         private IApartmentService _apartmentService;
         private ObservableCollection<ApartmentModel> _apartments;
 
-        private PersonModel _selectedPerson;
+        //private PersonModel _selectedPerson;
         private IPersonService _personService;
         private ObservableCollection<PersonModel> _persons;
 
@@ -67,10 +67,13 @@ namespace MVVM
             get
             {
                 return _closeCommand ??
-                       (_closeCommand = new RelayCommand(obj =>
-                       {
-                           Application.Current.Shutdown();
-                       }));
+                       (_closeCommand = new RelayCommand
+                           (obj => 
+                           {
+                               MessageBox.Show("Program is closing.", caption: "Close info");
+                               Application.Current.Shutdown();
+                           })
+                       );
             }
         }
 
@@ -98,7 +101,8 @@ namespace MVVM
         public async Task SetSelectedPersonModel(ApartmentModel selectedApartment)
         {
             var personOfApartment = await _personService.GetByIdAsync(selectedApartment.PersonId);
-            Persons = new ObservableCollection<PersonModel>() { personOfApartment };
+            Persons = new ObservableCollection<PersonModel>() {  };
+            Persons.Add(personOfApartment);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
