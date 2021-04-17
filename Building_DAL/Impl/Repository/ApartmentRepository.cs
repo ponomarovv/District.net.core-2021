@@ -12,7 +12,7 @@ namespace District.Dal.Impl.Repository
 {
     public class ApartmentRepository : GenericKeyRepository<int, Apartment>, IApartmentRepository
     {
-        public ApartmentRepository() : base(DbContextManager.DistrictDbContext)
+        public ApartmentRepository(DistrictDbContext dbContext) : base(dbContext)
         { 
 
         }

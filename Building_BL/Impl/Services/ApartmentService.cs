@@ -8,61 +8,83 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using District.Dal.Impl;
 
 namespace District.Bl.Impl.Services
 {
     public class ApartmentService : IApartmentService
     {
-        private readonly IApartmentRepository _apartmentRepository;
+        private readonly UnitOfWork _unitOfWork;
         private readonly ApartmentMapper _apartmentMapper;
         public ApartmentService()
         {
-            _apartmentRepository = new ApartmentRepository();
+            _unitOfWork = new UnitOfWork();
             _apartmentMapper = new ApartmentMapper();
         }
 
         public async Task<ApartmentModel> CreateApartment(ApartmentModel model)
         {
-            return _apartmentMapper.Map(await _apartmentRepository.AddAsync(_apartmentMapper.MapBack(model)));
+            return _apartmentMapper.Map(await _unitOfWork.ApartmentRepository.AddAsync(_apartmentMapper.MapBack(model)));
         }
         public async Task<ApartmentModel> GetByIdAsync(int id)
         {
-            var item = await _apartmentRepository.GetByIdAsync(id);
+            var item = await _unitOfWork.ApartmentRepository.GetByIdAsync(id);
 
             return _apartmentMapper.Map(item);
         }
         public async Task UpdateApartment(ApartmentModel model)
         {
-            await _apartmentRepository.UpdateAsync(_apartmentMapper.MapBack(model));
+            await _unitOfWork.ApartmentRepository.UpdateAsync(_apartmentMapper.MapBack(model));
         }
 
         public async Task DeleteApartment(int id)
         {
-            await _apartmentRepository.DeleteAsync(id);
+            await _unitOfWork.ApartmentRepository.DeleteAsync(id);
         }
 
 
         public async Task<List<ApartmentModel>> GetAllApartments()
         {
-            List<ApartmentModel> apartments = (await _apartmentRepository.GetAllAsync()).Select(_apartmentMapper.Map).ToList();
+            List<ApartmentModel> apartments = (await _unitOfWork.ApartmentRepository.GetAllAsync()).Select(_apartmentMapper.Map).ToList();
 
             int apartmentsLength = apartments.Count;
 
             ApartmentModel tempApartmentModelModel = new ApartmentModel();
 
-            for (int i = 0; i < apartmentsLength; i++) 
+            for (int i = 0; i < apartmentsLength - 1; i++)
             {
-                for (int j = 0; j < apartmentsLength; j++)
+                for (int j = i + 1; j < apartmentsLength; j++)
                 {
-                    if (apartments[i].Id < apartments[j].Id)
+                    if (apartments[i].Id > apartments[j].Id)
                     {
                         tempApartmentModelModel = apartments[i];
                         apartments[i] = apartments[j];
                         apartments[j] = tempApartmentModelModel;
                     }
-                    
+
                 }
             }
+
+            //ApartmentModel minApartmentModel = new ApartmentModel();
+
+            //for (int i = 0; i < apartmentsLength - 1; i++)
+            //{
+            //    minApartmentModel = apartments[i];
+            //    for (int j = i + 1; j < apartmentsLength; j++)
+            //    {
+            //        if (minApartmentModel.Id > apartments[j].Id)
+            //        {
+            //            minApartmentModel = apartments[j];
+
+            //        }
+
+            //    }
+
+            //    apartments[i] = minApartmentModel;
+            //int dummy = list[i];
+            //list[i] = list[min];
+            //list[min] = dummy;
+            //}
 
 
             //var result = await _apartmentRepository.GetAllAsync();
@@ -77,12 +99,12 @@ namespace District.Bl.Impl.Services
 
         public async Task<List<ApartmentModel>> GetApartmentsByBuildingId(int buildingId)
         {
-            return ((await _apartmentRepository.GetApartmentsByBuildingId(buildingId)).Select(_apartmentMapper.Map)).ToList();
+            return ((await _unitOfWork.ApartmentRepository.GetApartmentsByBuildingId(buildingId)).Select(_apartmentMapper.Map)).ToList();
         }
 
         public async Task<List<ApartmentModel>> GetApartmentsByPersonId(int personId)
         {
-            return ((await _apartmentRepository.GetApartmentsByPersonId(personId)).Select(_apartmentMapper.Map)).ToList();
+            return ((await _unitOfWork.ApartmentRepository.GetApartmentsByPersonId(personId)).Select(_apartmentMapper.Map)).ToList();
         }
     }
 }

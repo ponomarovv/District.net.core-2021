@@ -70,7 +70,7 @@ namespace MVVM
                        (_closeCommand = new RelayCommand
                            (obj => 
                            {
-                               MessageBox.Show("Program is closing.", caption: "Close info");
+                               //MessageBox.Show("Program is closing.", caption: "Close info");
                                Application.Current.Shutdown();
                            })
                        );

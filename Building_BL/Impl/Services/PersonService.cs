@@ -10,41 +10,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using District.Dal.Impl;
 
 namespace District.Bl.Impl.Services
 {
     public class PersonService : IPersonService
     {
-        private readonly IPersonRepository _personRepository;
+        private readonly UnitOfWork _unitOfWork;
+        
         private readonly PersonMapper _personMapper;
 
-        private readonly IApartmentRepository _apartmentRepository;
+       
 
         public PersonService()
         {
-            _personRepository = new PersonRepository();
+            _unitOfWork = new UnitOfWork();
             _personMapper = new PersonMapper();
-            _apartmentRepository = new ApartmentRepository();
+            
         }
 
         public async Task<PersonModel> CreatePerson(PersonModel model)
         {
-            return  _personMapper.Map(await _personRepository.AddAsync(_personMapper.MapBack(model)));
+            return  _personMapper.Map(await _unitOfWork.PersonRepository.AddAsync(_personMapper.MapBack(model)));
         }
 
         public async Task UpdatePerson(PersonModel model)
         {
-            await _personRepository.UpdateAsync(_personMapper.MapBack(model));
+            await _unitOfWork.PersonRepository.UpdateAsync(_personMapper.MapBack(model));
         }
 
         public async Task DeletePerson(int id)
         {
-            await _personRepository.DeleteAsync(id);
+            await _unitOfWork.PersonRepository.DeleteAsync(id);
         }
 
         public async Task BuyApartment(int personId, int apartmentId)
         {
-            Apartment item = await _apartmentRepository.GetByIdAsync(apartmentId);
+            Apartment item = await _unitOfWork.ApartmentRepository.GetByIdAsync(apartmentId);
             item.PersonId = personId;
             if (personId != 1) // 1 is id of building creator
             {
@@ -55,11 +57,11 @@ namespace District.Bl.Impl.Services
                 item.IsOwn = false;
             }
             item.OrderDate = DateTime.Now;
-            await _apartmentRepository.UpdateAsync(item);
+            await _unitOfWork.ApartmentRepository.UpdateAsync(item);
         }
         public async Task<PersonModel> GetByIdAsync(int id)
         {
-            var item = await _personRepository.GetByIdAsync(id);
+            var item = await _unitOfWork.PersonRepository.GetByIdAsync(id);
             if (item == null)
             {
                 return new PersonModel() { };
@@ -73,7 +75,7 @@ namespace District.Bl.Impl.Services
         {
 
 
-            PersonModel result =  _personMapper.Map(await _personRepository.FindPersonByName(name));
+            PersonModel result =  _personMapper.Map(await _unitOfWork.PersonRepository.FindPersonByName(name));
 
             //if (result == null)
             //{
@@ -94,7 +96,7 @@ namespace District.Bl.Impl.Services
 
         public async Task<List<PersonModel>> GetAllPersons()
         {
-            return (await _personRepository.GetAllAsync()).Select(_personMapper.Map).ToList();
+            return (await _unitOfWork.PersonRepository.GetAllAsync()).Select(_personMapper.Map).ToList();
         }
     }
 }
