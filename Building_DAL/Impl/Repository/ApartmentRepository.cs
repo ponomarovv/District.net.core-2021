@@ -19,8 +19,13 @@ namespace District.Dal.Impl.Repository
 
         public async Task<List<Apartment>> GetApartmentsByBuildingId(int buildingid)
         {
-            var result = await  Context.Apartments.Where(x => x.BuildingId == buildingid).ToListAsync();
-            return  result;
+            var result = 
+                from apartment in Context.Apartments
+                where apartment.BuildingId == buildingid
+                select apartment;
+
+            //var result = await  Context.Apartments.Where(x => x.BuildingId == buildingid).ToListAsync();
+            return  await result.ToListAsync();
         }
 
         public async Task<List<Apartment>> GetApartmentsByPersonId(int personId)
