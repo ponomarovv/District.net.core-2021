@@ -10,15 +10,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using District.Bl.Abstract.IMappers;
 using District.Dal.Impl;
+using District.Entities.Tables;
+using District.Dal.Abstact;
 
 namespace District.Bl.Impl.Services
 {
     public class BuildingService : IBuildingService
     {
         
-        private readonly BuildingMapper _buildingMapper;
-        private readonly UnitOfWork _unitOfWork;
+        private readonly IBackMapper<Building, BuildingModel> _buildingMapper;
+        private readonly IUnitOfWork _unitOfWork;
 
         public BuildingService()
         {

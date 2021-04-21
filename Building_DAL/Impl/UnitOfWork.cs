@@ -1,35 +1,36 @@
 ﻿using System;
 using District.Dal.Abstact;
+using District.Dal.Abstact.IRepository;
 using District.Dal.Impl.Repository;
 
 namespace District.Dal.Impl
 {
     public class UnitOfWork : IDisposable, IUnitOfWork
     {
-        private readonly DistrictDbContext _dbContext = DbContextManager.DistrictDbContext;
-        private ApartmentRepository _apartmentRepository;
-        private PersonRepository _personRepository;  // TODO не абстракции
-        private BuildingRepository _buildingRepository;
-        private EntranceRepository _entranceRepository;
+        private readonly DistrictDbContext _dbContext = new DistrictDbContext();
+        private IApartmentRepository _apartmentRepository;
+        private IPersonRepository _personRepository;  // TODO не абстракции
+        private IBuildingRepository _buildingRepository;
+        private IEntranceRepository _entranceRepository;
 
         public ApartmentRepository ApartmentRepository
         {
-            get { return _apartmentRepository ??= new ApartmentRepository(_dbContext); }
+            get { return (ApartmentRepository) (_apartmentRepository ??= new ApartmentRepository(_dbContext)); }
         }
 
         public PersonRepository PersonRepository
         {
-            get { return _personRepository ??= new PersonRepository(_dbContext); }
+            get { return (PersonRepository) (_personRepository ??= new PersonRepository(_dbContext)); }
         }
 
         public BuildingRepository BuildingRepository
         {
-            get { return _buildingRepository ??= new BuildingRepository(_dbContext); }
+            get { return (BuildingRepository) (_buildingRepository ??= new BuildingRepository(_dbContext)); }
         }
 
         public EntranceRepository EntranceRepository
         {
-            get { return _entranceRepository ??= new EntranceRepository(_dbContext); }
+            get { return (EntranceRepository)(_entranceRepository ??= new EntranceRepository(_dbContext)); }
         }
 
         public void Save()

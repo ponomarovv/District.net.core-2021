@@ -13,12 +13,12 @@ namespace MVVM
 {
     public class ApplicationViewModel : INotifyPropertyChanged
     {
-        private ApartmentModel _selectedApartment;
-        private IApartmentService _apartmentService;
+        private ApartmentModel _selectedApartment ;
+        private IApartmentService _apartmentService { get; set; }
         private ObservableCollection<ApartmentModel> _apartments;
 
         //private PersonModel _selectedPerson;
-        private IPersonService _personService;
+        private IPersonService _personService { get; set; }
         private ObservableCollection<PersonModel> _persons;
 
         public ObservableCollection<ApartmentModel> Apartments
@@ -81,8 +81,14 @@ namespace MVVM
 
  
 
-        public ApplicationViewModel()
+        public ApplicationViewModel() //todo IServices, Service collection
         {
+            //_apartmentService = new ApartmentService();
+            //_personService = new PersonService();
+            //var allApartments =  _apartmentService.GetAllApartments().Result;
+            //allApartments.Wait();
+            //Apartments = new ObservableCollection<ApartmentModel>(allApartments);
+
             InitData();
         }
 
