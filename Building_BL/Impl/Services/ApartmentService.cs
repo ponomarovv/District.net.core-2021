@@ -8,14 +8,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using District.Bl.Abstract.IMappers;
+using District.Dal.Abstact;
 using District.Dal.Impl;
+using District.Entities.Tables;
 
 namespace District.Bl.Impl.Services
 {
     public class ApartmentService : IApartmentService
     {
-        private readonly UnitOfWork _unitOfWork;
-        private readonly ApartmentMapper _apartmentMapper;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IBackMapper<Apartment, ApartmentModel> _apartmentMapper;
         public ApartmentService()
         {
             _unitOfWork = new UnitOfWork();

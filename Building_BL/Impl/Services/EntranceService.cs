@@ -9,15 +9,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using District.Bl.Abstract.IMappers;
+using District.Dal.Abstact;
 using District.Dal.Impl;
+using District.Entities.Tables;
 
 namespace District.Bl.Impl.Services
 {
     public class EntranceService : IEntranceService
     {
         
-        private readonly EntranceMapper _entranceMapper;
-        private readonly UnitOfWork _unitOfWork;
+        private readonly IBackMapper<Entrance, EntranceModel> _entranceMapper;
+        private readonly IUnitOfWork _unitOfWork;
 
         public EntranceService()
         {

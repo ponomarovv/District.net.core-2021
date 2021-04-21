@@ -10,15 +10,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using District.Bl.Abstract.IMappers;
+using District.Dal.Abstact;
 using District.Dal.Impl;
 
 namespace District.Bl.Impl.Services
 {
     public class PersonService : IPersonService
     {
-        private readonly UnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         
-        private readonly PersonMapper _personMapper;
+        private readonly IBackMapper<Person, PersonModel> _personMapper;
 
        
 

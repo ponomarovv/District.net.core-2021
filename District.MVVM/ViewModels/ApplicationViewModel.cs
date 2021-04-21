@@ -85,9 +85,9 @@ namespace MVVM
         {
             //_apartmentService = new ApartmentService();
             //_personService = new PersonService();
-            //var allApartments =  _apartmentService.GetAllApartments().Result;
+            //var allApartments = _apartmentService.GetAllApartments();
             //allApartments.Wait();
-            //Apartments = new ObservableCollection<ApartmentModel>(allApartments);
+            //Apartments = new ObservableCollection<ApartmentModel>(allApartments.Result);
 
             InitData();
         }
