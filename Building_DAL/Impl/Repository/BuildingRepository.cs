@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace District.Dal.Impl.Repository
 {
-    public class BuildingReposirory : GenericKeyRepository<int, Building>, IBuildingRepository
+    public class BuildingRepository : GenericKeyRepository<int, Building>, IBuildingRepository
     {
-        public BuildingReposirory() : base(DbContextManager.DistrictDbContext)
+        public BuildingRepository(DistrictDbContext dbContext) : base(dbContext)
         {
 
         }

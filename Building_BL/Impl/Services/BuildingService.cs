@@ -10,16 +10,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using District.Dal.Impl;
 
 namespace District.Bl.Impl.Services
 {
     public class BuildingService : IBuildingService
     {
-        private readonly IBuildingRepository _buildingRepository;
+        
         private readonly BuildingMapper _buildingMapper;
+        private readonly UnitOfWork _unitOfWork;
+
         public BuildingService()
         {
-            _buildingRepository = new BuildingReposirory();
+            _unitOfWork = new UnitOfWork();
             _buildingMapper = new BuildingMapper();
         }
 
@@ -27,22 +30,22 @@ namespace District.Bl.Impl.Services
 
         public async Task<BuildingModel> CreateBuilding(BuildingModel model)
         {
-            return _buildingMapper.Map(await _buildingRepository.AddAsync(_buildingMapper.MapBack(model)));
+            return _buildingMapper.Map(await _unitOfWork.BuildingRepository.AddAsync(_buildingMapper.MapBack(model)));
         }
 
         public async Task UpdateBuilding(BuildingModel model)
         {
-            await _buildingRepository.UpdateAsync(_buildingMapper.MapBack(model));
+            await _unitOfWork.BuildingRepository.UpdateAsync(_buildingMapper.MapBack(model));
         }
 
         public async Task DeleteBuilding(int id)
         {
-            await _buildingRepository.DeleteAsync(id);
+            await _unitOfWork.BuildingRepository.DeleteAsync(id);
         }
 
         public async Task<BuildingModel> GetByIdAsync(int id)
         {
-            var item = await _buildingRepository.GetByIdAsync(id);
+            var item = await _unitOfWork.BuildingRepository.GetByIdAsync(id);
 
             return _buildingMapper.Map(item);
         }
@@ -51,7 +54,7 @@ namespace District.Bl.Impl.Services
 
         public async Task<List<BuildingModel>> GetAllBuildings()
         {
-            return (await _buildingRepository.GetAllAsync()).Select(_buildingMapper.Map).ToList();
+            return (await _unitOfWork.BuildingRepository.GetAllAsync()).Select(_buildingMapper.Map).ToList();
         }
 
     }

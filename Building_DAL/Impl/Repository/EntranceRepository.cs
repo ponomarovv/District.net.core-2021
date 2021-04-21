@@ -8,7 +8,7 @@ namespace District.Dal.Impl.Repository
 {
     public class EntranceRepository : GenericKeyRepository<int, Entrance>, IEntranceRepository
     {
-        public EntranceRepository() : base(DbContextManager.DistrictDbContext)
+        public EntranceRepository(DistrictDbContext dbContext) : base(dbContext)
         {
 
         }

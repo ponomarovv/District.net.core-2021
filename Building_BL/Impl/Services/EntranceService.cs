@@ -9,16 +9,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using District.Dal.Impl;
 
 namespace District.Bl.Impl.Services
 {
     public class EntranceService : IEntranceService
     {
-        private readonly IEntranceRepository _entranceRepository;
+        
         private readonly EntranceMapper _entranceMapper;
+        private readonly UnitOfWork _unitOfWork;
+
         public EntranceService()
         {
-            _entranceRepository = new EntranceRepository();
+            _unitOfWork = new UnitOfWork();
             _entranceMapper = new EntranceMapper();
         }
 
@@ -26,27 +29,27 @@ namespace District.Bl.Impl.Services
 
         public async Task<EntranceModel> CreateEntrance(EntranceModel model)
         {
-            return _entranceMapper.Map(await _entranceRepository.AddAsync(_entranceMapper.MapBack(model)));
+            return _entranceMapper.Map(await _unitOfWork.EntranceRepository.AddAsync(_entranceMapper.MapBack(model)));
         }
 
         public async Task UpdateEntrance(EntranceModel model)
         {
-            await _entranceRepository.UpdateAsync(_entranceMapper.MapBack(model));
+            await _unitOfWork.EntranceRepository.UpdateAsync(_entranceMapper.MapBack(model));
         }
 
         public async Task DeleteEntrance(int id)
         {
-            await _entranceRepository.DeleteAsync(id);
+            await _unitOfWork.EntranceRepository.DeleteAsync(id);
         }
         public async Task<EntranceModel> GetByIdAsync(int id)
         {
-            var item = await _entranceRepository.GetByIdAsync(id);
+            var item = await _unitOfWork.EntranceRepository.GetByIdAsync(id);
 
             return _entranceMapper.Map(item);
         }
         public async Task<List<EntranceModel>> GetAllEntrances()
         {
-            return (await _entranceRepository.GetAllAsync()).Select(_entranceMapper.Map).ToList();
+            return (await _unitOfWork.EntranceRepository.GetAllAsync()).Select(_entranceMapper.Map).ToList();
         }
 
 

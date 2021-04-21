@@ -9,7 +9,16 @@ namespace District.Models.Models
         private int _id;
         private int _buildingId;
         private int _apartmentNumber;
+        private int _personId;
+        private int _entranceId;
+        private int _squareSize;
+        private DateTime? _orderDate;
+        private bool _isOwn = false;
 
+        public ApartmentModel()
+        {
+            IsOwn = false;
+        }
         public int Id
         {
             get => _id;
@@ -27,12 +36,41 @@ namespace District.Models.Models
             {
                 _buildingId = value;
                 OnPropertyChanged(nameof(BuildingId));
-            } 
+            }
         }
 
-        public int PersonId { get; set; }
-        public int EntranceId { get; set; }
-        public int SquareSize { get; set; }
+        public int PersonId
+        {
+            get => _personId;
+            set
+            {
+                _personId = value;
+                OnPropertyChanged(nameof(PersonId));
+            }
+
+        }
+
+        public int EntranceId
+        {
+            get => _entranceId;
+            set
+            {
+                _entranceId = value;
+                OnPropertyChanged(nameof(EntranceId));
+
+            }
+        }
+
+        public int SquareSize
+        {
+            get => _squareSize;
+            set
+            {
+                _squareSize = value;
+                OnPropertyChanged(nameof(SquareSize));
+
+            }
+        }
 
         public int ApartmentNumber
         {
@@ -41,11 +79,28 @@ namespace District.Models.Models
             {
                 _apartmentNumber = value;
                 OnPropertyChanged(nameof(ApartmentNumber));
-            } 
+            }
         }
 
-        public bool IsOwn { get; set; } = false;
-        public DateTime? OrderDate { get; set; }
+        public bool IsOwn
+        {
+            get => _isOwn;
+            set
+            {
+                _isOwn = value;
+                OnPropertyChanged(nameof(IsOwn));
+            }
+        }
+
+        public DateTime? OrderDate
+        {
+            get => _orderDate;
+            set
+            {
+                _orderDate = value;
+                OnPropertyChanged(nameof(OrderDate));
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

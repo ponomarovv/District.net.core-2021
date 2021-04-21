@@ -101,7 +101,7 @@ namespace MVVM
         public async Task SetSelectedPersonModel(ApartmentModel selectedApartment)
         {
             var personOfApartment = await _personService.GetByIdAsync(selectedApartment.PersonId);
-            Persons = new ObservableCollection<PersonModel>() {  };
+            Persons = new ObservableCollection<PersonModel>() { };
             Persons.Add(personOfApartment);
         }
 

@@ -9,6 +9,8 @@ namespace District.Dal.Impl
         private readonly DistrictDbContext _dbContext = DbContextManager.DistrictDbContext;
         private ApartmentRepository _apartmentRepository;
         private PersonRepository _personRepository;
+        private BuildingRepository _buildingRepository;
+        private EntranceRepository _entranceRepository;
 
         public ApartmentRepository ApartmentRepository
         {
@@ -18,6 +20,16 @@ namespace District.Dal.Impl
         public PersonRepository PersonRepository
         {
             get { return _personRepository ??= new PersonRepository(_dbContext); }
+        }
+
+        public BuildingRepository BuildingRepository
+        {
+            get { return _buildingRepository ??= new BuildingRepository(_dbContext); }
+        }
+
+        public EntranceRepository EntranceRepository
+        {
+            get { return _entranceRepository ??= new EntranceRepository(_dbContext); }
         }
 
         public void Save()
