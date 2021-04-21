@@ -4,11 +4,11 @@ using District.Dal.Impl.Repository;
 
 namespace District.Dal.Impl
 {
-    public class UnitOfWork : IDisposable
+    public class UnitOfWork : IDisposable, IUnitOfWork
     {
         private readonly DistrictDbContext _dbContext = DbContextManager.DistrictDbContext;
         private ApartmentRepository _apartmentRepository;
-        private PersonRepository _personRepository;
+        private PersonRepository _personRepository;  // TODO не абстракции
         private BuildingRepository _buildingRepository;
         private EntranceRepository _entranceRepository;
 
@@ -39,22 +39,24 @@ namespace District.Dal.Impl
 
         private bool _disposed = false;
 
-        public virtual void Dispose(bool disposing)
-        {
-            if (!this._disposed)
-            {
-                if (disposing)
-                {
-                    _dbContext.Dispose();
-                }
+        //public virtual void Dispose(bool disposing)
+        //{
+        //    if (!this._disposed)
+        //    {
+        //        if (disposing)
+        //        {
+        //            _dbContext.Dispose();
+        //        }
 
-                this._disposed = true;
-            }
-        }
+        //        this._disposed = true;
+        //    }
+        //}
 
         public void Dispose()
         {
-            Dispose(true);
+            //Dispose(true);
+            _dbContext.Dispose();
+
             GC.SuppressFinalize(this);
         }
     }

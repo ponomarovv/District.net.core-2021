@@ -23,7 +23,7 @@ namespace District.Bl.Impl.Services
         public BuildingService()
         {
             _unitOfWork = new UnitOfWork();
-            _buildingMapper = new BuildingMapper();
+            _buildingMapper = new BuildingMapper(); //TODO
         }
 
 

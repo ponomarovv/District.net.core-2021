@@ -72,6 +72,7 @@ namespace MVVM
                            {
                                //MessageBox.Show("Program is closing.", caption: "Close info");
                                Application.Current.Shutdown();
+
                            })
                        );
             }

@@ -48,7 +48,7 @@ namespace District.Bl.Impl.Services
         {
             Apartment item = await _unitOfWork.ApartmentRepository.GetByIdAsync(apartmentId);
             item.PersonId = personId;
-            if (personId != 1) // 1 is id of building creator
+            if (personId != 1) // 1 is id of building creator //переделать.
             {
                 item.IsOwn = true;
             }
@@ -62,10 +62,10 @@ namespace District.Bl.Impl.Services
         public async Task<PersonModel> GetByIdAsync(int id)
         {
             var item = await _unitOfWork.PersonRepository.GetByIdAsync(id);
-            if (item == null)
-            {
-                return new PersonModel() { };
-            }
+            //if (item == null)
+            //{
+            //    return new PersonModel() { };
+            //}
 
             return _personMapper.Map(item);
         }
@@ -75,7 +75,8 @@ namespace District.Bl.Impl.Services
         {
 
 
-            PersonModel result =  _personMapper.Map(await _unitOfWork.PersonRepository.FindPersonByName(name));
+            PersonModel result =  
+                _personMapper.Map(await _unitOfWork.PersonRepository.FindPersonByName(name));
 
             //if (result == null)
             //{
