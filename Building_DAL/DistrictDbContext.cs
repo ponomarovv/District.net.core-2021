@@ -13,10 +13,11 @@ namespace District.Dal
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
-        //    //optionsBuilder.UseNpgsql(@"host = 127.0.0.1; port = 5433; database = districtdb; user id = tdu819; password = 1111");
+        //    optionsBuilder.UseNpgsql(@"host = 127.0.0.1; port = 5433; database = districtdb; user id = tdu819; password = 1111");
         //}
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) //todo config connection string
         {
             optionsBuilder.UseNpgsql(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
         }

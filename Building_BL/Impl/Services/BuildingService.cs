@@ -19,14 +19,14 @@ namespace District.Bl.Impl.Services
 {
     public class BuildingService : IBuildingService
     {
-        
-        private readonly IBackMapper<Building, BuildingModel> _buildingMapper;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IBackMapper<Building, BuildingModel> _buildingMapper;
 
-        public BuildingService()
+
+        public BuildingService(IUnitOfWork unitOfWork, IBackMapper<Building, BuildingModel> buildingMapper)
         {
-            _unitOfWork = new UnitOfWork();
-            _buildingMapper = new BuildingMapper(); //TODO
+            _unitOfWork = unitOfWork;
+            _buildingMapper = buildingMapper;
         }
 
 

@@ -36,16 +36,25 @@ namespace District.MVVM
             var serviceCollection = new ServiceCollection();
 
             // TODO - Register dependencies
+            
+            serviceCollection.AddSingleton<IUnitOfWork, UnitOfWork>();
+
             //Services
             serviceCollection.AddTransient<IApartmentService, ApartmentService>();
             serviceCollection.AddTransient<IPersonService, PersonService>();
-            serviceCollection.AddSingleton<IUnitOfWork, UnitOfWork>();
+            serviceCollection.AddTransient<IBuildingService, BuildingService>();
+            serviceCollection.AddTransient<IEntranceService, EntranceService>();
+
 
             //Mappers
             serviceCollection.AddTransient<IBackMapper<Apartment, ApartmentModel>, ApartmentMapper>();
             serviceCollection.AddTransient<IBackMapper<Person, PersonModel>, PersonMapper>();
-            
-            
+            serviceCollection.AddTransient<IBackMapper<Building, BuildingModel>, BuildingMapper>(); //todo why?
+            serviceCollection.AddTransient<IBackMapper<Entrance, EntranceModel>, EntranceMapper>();
+
+
+
+
 
             // Build the IServiceProvider and return it
             return serviceCollection.BuildServiceProvider();

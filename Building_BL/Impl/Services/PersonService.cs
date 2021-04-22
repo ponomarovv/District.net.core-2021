@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using District.Bl.Abstract.IMappers;
 using District.Dal.Abstact;
 using District.Dal.Impl;
+using District.Entities.Enums;
 
 namespace District.Bl.Impl.Services
 {
@@ -49,18 +50,24 @@ namespace District.Bl.Impl.Services
 
         public async Task BuyApartment(int personId, int apartmentId)
         {
-            Apartment item = await _unitOfWork.ApartmentRepository.GetByIdAsync(apartmentId);
-            item.PersonId = personId;
-            if (personId != 1) // 1 is id of building creator // todo переделать. -1
+            Apartment apartment = await _unitOfWork.ApartmentRepository.GetByIdAsync(apartmentId);
+            Person person = await _unitOfWork.PersonRepository.GetByIdAsync(personId);
+            apartment.PersonId = personId;
+            apartment.OrderDate = DateTime.Now;
+
+            switch (person.PersonType)
             {
-                item.IsOwn = true;
+                case PersonType.Builder:
+                    apartment.IsOwn = false;
+                    break;
+                case PersonType.Client:
+                    apartment.IsOwn = true;
+                    break;
+                default:
+                    break;
             }
-            else
-            {
-                item.IsOwn = false;
-            }
-            item.OrderDate = DateTime.Now;
-            await _unitOfWork.ApartmentRepository.UpdateAsync(item);
+
+            await _unitOfWork.ApartmentRepository.UpdateAsync(apartment);
         }
         public async Task<PersonModel> GetByIdAsync(int id)
         {
@@ -100,7 +107,27 @@ namespace District.Bl.Impl.Services
 
         public async Task<List<PersonModel>> GetAllPersons()
         {
-            return (await _unitOfWork.PersonRepository.GetAllAsync()).Select(_personMapper.Map).ToList();
+            List<PersonModel> allpersons = (await _unitOfWork.PersonRepository.GetAllAsync()).Select(_personMapper.Map).ToList();
+
+            int personsLength = allpersons.Count;
+
+            PersonModel tempPersonModel = new PersonModel();
+
+            for (int i = 0; i < personsLength - 1; i++)
+            {
+                for (int j = i + 1; j < personsLength; j++)
+                {
+                    if (allpersons[i].Id > allpersons[j].Id)
+                    {
+                        tempPersonModel = allpersons[i];
+                        allpersons[i] = allpersons[j];
+                        allpersons[j] = tempPersonModel;
+                    }
+
+                }
+            }
+
+            return allpersons;
         }
     }
 }

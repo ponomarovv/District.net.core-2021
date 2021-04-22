@@ -18,14 +18,14 @@ namespace District.Bl.Impl.Services
 {
     public class EntranceService : IEntranceService
     {
-        
-        private readonly IBackMapper<Entrance, EntranceModel> _entranceMapper;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IBackMapper<Entrance, EntranceModel> _entranceMapper;
+        
 
-        public EntranceService()
+        public EntranceService(IUnitOfWork unitOfWork, IBackMapper<Entrance, EntranceModel> entranceMapper)
         {
-            _unitOfWork = new UnitOfWork();
-            _entranceMapper = new EntranceMapper();
+            _unitOfWork = unitOfWork;
+            _entranceMapper = entranceMapper;
         }
 
 

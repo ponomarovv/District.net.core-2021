@@ -11,6 +11,11 @@ namespace District.Generators
 {
     public class Generator
     {
+        IApartmentService _apartmentService;
+        public Generator(IApartmentService apartmentService)
+        {
+            _apartmentService = apartmentService;
+        }
         public async Task CreateBuildings(int countBuildings, int countEntrances)
         {
             IBuildingService buildingService = new BuildingService();
@@ -42,7 +47,7 @@ namespace District.Generators
 
         public async Task CreateAppartments(int buildingId, int entranceId, int countApartments)
         {
-            IApartmentService apartmentService = new ApartmentService();
+            
 
             IEntranceService entrancetService = new EntranceService();
             int entranceNumber = entrancetService.GetByIdAsync(entranceId).Result.EntranceNumber;
@@ -53,7 +58,7 @@ namespace District.Generators
                 int apartmentByEntranceCounter = (entranceNumber - 1) * 75;
 
                 
-                var res = await apartmentService.CreateApartment(new ApartmentModel()
+                var res = await _apartmentService.CreateApartment(new ApartmentModel()
                 {
                     BuildingId = buildingId,
                     EntranceId = entranceId,

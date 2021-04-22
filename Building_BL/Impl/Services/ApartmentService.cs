@@ -24,7 +24,7 @@ namespace District.Bl.Impl.Services
         public ApartmentService(IUnitOfWork unitOfWork, IBackMapper<Apartment, ApartmentModel> apartmentMapper)
         {
             _unitOfWork = unitOfWork;
-            _apartmentMapper = apartmentMapper; // TODO сюда IMapper, и IUnitofwork
+            _apartmentMapper = apartmentMapper; 
         }
 
         public async Task<ApartmentModel> CreateApartment(ApartmentModel model)
