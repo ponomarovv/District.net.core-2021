@@ -50,7 +50,7 @@ namespace District.Bl.Impl.Services
         {
             Apartment item = await _unitOfWork.ApartmentRepository.GetByIdAsync(apartmentId);
             item.PersonId = personId;
-            if (personId != 1) // 1 is id of building creator // todo переделать.
+            if (personId != 1) // 1 is id of building creator // todo переделать. -1
             {
                 item.IsOwn = true;
             }
