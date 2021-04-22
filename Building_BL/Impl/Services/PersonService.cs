@@ -24,11 +24,12 @@ namespace District.Bl.Impl.Services
 
        
 
-        public PersonService()
+        public PersonService(IUnitOfWork unitOfWork, IBackMapper<Person, PersonModel> personMapper)
         {
-            _unitOfWork = new UnitOfWork();
-            _personMapper = new PersonMapper();
-            
+            _unitOfWork = unitOfWork;
+            _personMapper = personMapper;
+
+
         }
 
         public async Task<PersonModel> CreatePerson(PersonModel model)

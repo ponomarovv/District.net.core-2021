@@ -19,10 +19,12 @@ namespace District.Bl.Impl.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IBackMapper<Apartment, ApartmentModel> _apartmentMapper;
-        public ApartmentService()
+
+        //public ApartmentService(IUnitOfWork unitOfWork)
+        public ApartmentService(IUnitOfWork unitOfWork, IBackMapper<Apartment, ApartmentModel> apartmentMapper)
         {
-            _unitOfWork = new UnitOfWork();
-            _apartmentMapper = new ApartmentMapper(); // TODO сюда IMapper, и IUnitofwork
+            _unitOfWork = unitOfWork;
+            _apartmentMapper = apartmentMapper; // TODO сюда IMapper, и IUnitofwork
         }
 
         public async Task<ApartmentModel> CreateApartment(ApartmentModel model)
