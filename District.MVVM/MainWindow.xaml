@@ -73,9 +73,6 @@
                             <TextBlock Text="{Binding Path=Name}" />
 
 
-
-
-
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

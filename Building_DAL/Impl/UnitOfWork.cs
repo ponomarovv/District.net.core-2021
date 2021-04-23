@@ -7,11 +7,16 @@ namespace District.Dal.Impl
 {
     public class UnitOfWork : IDisposable, IUnitOfWork
     {
-        private readonly DistrictDbContext _dbContext = new DistrictDbContext(); // todo DI
+        private readonly DistrictDbContext _dbContext;
         private IApartmentRepository _apartmentRepository;
         private IPersonRepository _personRepository;  // 
         private IBuildingRepository _buildingRepository;
         private IEntranceRepository _entranceRepository;
+
+        public UnitOfWork(DistrictDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
         public ApartmentRepository ApartmentRepository
         {
