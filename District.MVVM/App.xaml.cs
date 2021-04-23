@@ -33,7 +33,7 @@ namespace District.MVVM
         IServiceProvider ConfigureDependencyInjection()
         {
             // Create new service collection which generates the IServiceProvider
-            var serviceCollection = new ServiceCollection();
+            IServiceCollection serviceCollection = new ServiceCollection();
 
             // TODO - Register dependencies
             

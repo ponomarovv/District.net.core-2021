@@ -24,7 +24,7 @@ namespace District.Dal.Impl.Repository
         public virtual async Task<TEntity> AddAsync(TEntity entity)
         {
             EntityEntry<TEntity> item = await DbSet.AddAsync(entity);
-            await Context.SaveChangesAsync();
+            await Context.SaveChangesAsync(); // todo save once
             return item.Entity;
         }
 
