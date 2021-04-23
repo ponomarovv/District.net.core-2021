@@ -9,6 +9,7 @@ using District.Bl.Abstract.IMappers;
 using District.Bl.Abstract.IServices;
 using District.Bl.Impl.Mappers;
 using District.Bl.Impl.Services;
+using District.Dal;
 using District.Dal.Abstact;
 using District.Dal.Impl;
 using District.Entities.Tables;
@@ -38,6 +39,7 @@ namespace District.MVVM
             // TODO - Register dependencies
             
             serviceCollection.AddSingleton<IUnitOfWork, UnitOfWork>();
+            serviceCollection.AddSingleton<DistrictDbContext, DistrictDbContext>();
 
             //Services
             serviceCollection.AddTransient<IApartmentService, ApartmentService>();
