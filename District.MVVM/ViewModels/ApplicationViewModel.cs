@@ -5,21 +5,37 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using District.Bl.Abstract.IServices;
 using District.Bl.Impl.Services;
 using District.Models.Models;
 
-namespace MVVM
+namespace MVVM.ViewModels
 {
     public class ApplicationViewModel : INotifyPropertyChanged
     {
         private ApartmentModel _selectedApartment ;
-        private IApartmentService _apartmentService;
+        private readonly IApartmentService _apartmentService;
         private ObservableCollection<ApartmentModel> _apartments;
 
         private PersonModel _selectedPerson;
-        private IPersonService _personService;
+        private readonly IPersonService _personService;
         private ObservableCollection<PersonModel> _persons;
+
+        private readonly ICommand _closeCommand;
+        public ICommand CloseCommand
+        {
+            get => _closeCommand;
+        }
+
+
+        private readonly ICommand _buyApartmentCommand;
+        public ICommand BuyApartmentCommand
+        {
+            get => _buyApartmentCommand;
+        }
+
+
 
         public ObservableCollection<ApartmentModel> Apartments
         {
@@ -44,7 +60,7 @@ namespace MVVM
             set
             {
                 
-                _selectedApartment = value;
+                _selectedApartment.Id = value.Id;
                 OnPropertyChanged("SelectedApartment");
 
                 //SetSelectedPersonModel(SelectedApartment);
@@ -64,7 +80,7 @@ namespace MVVM
             set
             {
 
-                _selectedPerson = value;
+                _selectedPerson.Id = value.Id;
                 OnPropertyChanged("SelectedApartment");
 
                 //SetSelectedPersonModel(SelectedApartment);
@@ -81,22 +97,22 @@ namespace MVVM
             }
         }
 
-        private RelayCommand _closeCommand;
-        public RelayCommand CloseCommand
-        {
-            get
-            {
-                return _closeCommand ??
-                       (_closeCommand = new RelayCommand
-                           (obj => 
-                           {
-                               //MessageBox.Show("Program is closing.", caption: "Close info");
-                               Application.Current.Shutdown();
+        //private RelayCommand _closeCommand;
+        //public RelayCommand CloseCommand
+        //{
+        //    get
+        //    {
+        //        return _closeCommand ??
+        //               (_closeCommand = new RelayCommand
+        //                   (obj => 
+        //                   {
+        //                       //MessageBox.Show("Program is closing.", caption: "Close info");
+        //                       Application.Current.Shutdown();
 
-                           })
-                       );
-            }
-        }
+        //                   })
+        //               );
+        //    }
+        //}
 
 
  
@@ -105,6 +121,12 @@ namespace MVVM
         {
             _apartmentService = apartmentService;
             _personService = personService;
+
+            _selectedPerson = new PersonModel();
+            _selectedApartment = new ApartmentModel();
+
+            _closeCommand = new CloseCommand();
+            _buyApartmentCommand = new BuyApartmentCommand(_personService ,SelectedPerson, SelectedApartment);
 
             InitData();
         }

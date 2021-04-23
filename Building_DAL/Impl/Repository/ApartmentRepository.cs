@@ -20,7 +20,7 @@ namespace District.Dal.Impl.Repository
         public async Task<List<Apartment>> GetApartmentsByBuildingId(int buildingid)
         {
             var result =
-                from apartment in  Context.Apartments // todo two contexts?
+                from apartment in  Context.Apartments //todo two contexts
                 where apartment.BuildingId == buildingid
                 select apartment;
 

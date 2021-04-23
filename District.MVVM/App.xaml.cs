@@ -49,7 +49,7 @@ namespace District.MVVM
             //Mappers
             serviceCollection.AddTransient<IBackMapper<Apartment, ApartmentModel>, ApartmentMapper>();
             serviceCollection.AddTransient<IBackMapper<Person, PersonModel>, PersonMapper>();
-            serviceCollection.AddTransient<IBackMapper<Building, BuildingModel>, BuildingMapper>(); //todo why?
+            serviceCollection.AddTransient<IBackMapper<Building, BuildingModel>, BuildingMapper>(); 
             serviceCollection.AddTransient<IBackMapper<Entrance, EntranceModel>, EntranceMapper>();
 
 

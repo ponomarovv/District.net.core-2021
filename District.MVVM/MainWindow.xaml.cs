@@ -17,6 +17,7 @@ using District.Bl.Abstract.IServices;
 using District.Models.Models;
 using Microsoft.Extensions.DependencyInjection;
 using MVVM;
+using MVVM.ViewModels;
 
 namespace District.MVVM
 {

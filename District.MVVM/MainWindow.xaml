@@ -3,11 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:District.MVVM"
+        xmlns:local="clr-namespace:MVVM"
 
-        xmlns:cmd="clr-namespace:District.MVVM.Commands"
+        xmlns:cmd="clr-namespace:MVVM"
 
-        xmlns:l="clr-namespace:District.MVVM"
+        xmlns:l="clr-namespace:MVVM"
+
+        xmlns:vm="clr-namespace:MVVM.ViewModels"
 
         mc:Ignorable="d"
 
@@ -41,14 +43,14 @@
                 <DataTemplate>
                     <StackPanel Margin="5">
 
-                        <TextBlock Text="Building" />
+                        <TextBlock Text="Building ID" />
                         <TextBlock Text="{Binding Path=BuildingId}" />
 
 
                         <TextBlock Text="ApartmentNumber" />
                         <TextBlock Text="{Binding Path=ApartmentNumber}" />
 
-                        <TextBlock Text="ID" />
+                        <TextBlock Text="Apartment ID" />
                         <TextBlock Text= "{Binding Path=Id}" />
 
 
@@ -78,7 +80,7 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <Button VerticalContentAlignment="Bottom" HorizontalAlignment="Right" Command="{Binding CloseCommand}"  >Buy Apartment</Button>
+            <Button VerticalContentAlignment="Bottom" HorizontalAlignment="Right" Command="{Binding BuyApartmentCommand}"  >Buy Apartment</Button>
             <Button Margin="0,20,0,0" VerticalContentAlignment="Bottom" HorizontalAlignment="Right" Command="{Binding CloseCommand}"  >Close</Button>
 
         </StackPanel>
