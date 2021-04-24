@@ -40,12 +40,12 @@ namespace MVVM
 
             Buy(_selectedPerson.Id, _selectedApartment.Id);
             MessageBox.Show("Apartment was bought");
-            
+
         }
 
-        public  async Task Buy(int selectedPersonId, int selectedApartmentId)
+        public async Task Buy(int selectedPersonId, int selectedApartmentId)
         {
-           await _personService.BuyApartment(selectedPersonId, selectedApartmentId);
+            await _personService.BuyApartment(selectedPersonId, selectedApartmentId);
         }
     }
 }

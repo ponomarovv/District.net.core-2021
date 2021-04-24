@@ -133,10 +133,10 @@ namespace MVVM.ViewModels
 
         private async void InitData()
         {
-            var allApartments = await _apartmentService.GetAllApartments();
+            List<ApartmentModel> allApartments = await _apartmentService.GetAllApartments();
             Apartments = new ObservableCollection<ApartmentModel>(allApartments);
 
-            var allPersons = await _personService.GetAllPersons();
+            List<PersonModel> allPersons = await _personService.GetAllPersons();
             Persons = new ObservableCollection<PersonModel>(allPersons);
 
 
