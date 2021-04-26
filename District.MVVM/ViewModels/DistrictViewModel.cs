@@ -13,11 +13,11 @@ namespace District.MVVM.ViewModels
 {
     public class DistrictViewModel : INotifyPropertyChanged
     {
-        private readonly ApartmentModel _selectedApartment;
+        private ApartmentModel _selectedApartment;
         private readonly IApartmentService _apartmentService;
         private ObservableCollection<ApartmentModel> _apartments;
 
-        private readonly PersonModel _selectedPerson;
+        private PersonModel _selectedPerson;
         private readonly IPersonService _personService;
         private ObservableCollection<PersonModel> _persons;
 
@@ -60,7 +60,8 @@ namespace District.MVVM.ViewModels
             set
             {
 
-                _selectedApartment.Id = value.Id;
+                _selectedApartment = value;
+                ((BuyApartmentCommand) _buyApartmentCommand).SelectedApartment = value;
                 OnPropertyChanged("SelectedApartment");
 
                 //SetSelectedPersonModel(SelectedApartment);
@@ -80,8 +81,9 @@ namespace District.MVVM.ViewModels
             set
             {
 
-                _selectedPerson.Id = value.Id;
-                OnPropertyChanged("SelectedApartment");
+                _selectedPerson = value;
+                ((BuyApartmentCommand) _buyApartmentCommand).SelectedPerson = value;
+                OnPropertyChanged("SelectedPerson");
 
                 //SetSelectedPersonModel(SelectedApartment);
             }
@@ -122,11 +124,8 @@ namespace District.MVVM.ViewModels
             _apartmentService = apartmentService;
             _personService = personService;
 
-            _selectedPerson = new PersonModel();
-            _selectedApartment = new ApartmentModel();
-
             _closeCommand = new CloseCommand();
-            _buyApartmentCommand = new BuyApartmentCommand(_personService, SelectedPerson, SelectedApartment);
+            _buyApartmentCommand = new BuyApartmentCommand(_personService);
 
             InitData();
         }

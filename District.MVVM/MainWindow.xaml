@@ -69,7 +69,8 @@
                         <!--<TextBlock Text="Apartment ID" />
                         <TextBlock Text= "{Binding Path=Id}" />-->
 
-                        
+
+
 
 
 

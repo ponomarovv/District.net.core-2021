@@ -12,8 +12,8 @@ namespace District.MVVM.Commands
     {
         private readonly IPersonService _personService;
 
-        private readonly PersonModel _selectedPerson;
-        private readonly ApartmentModel _selectedApartment;
+        public PersonModel SelectedPerson { get; set; }
+        public ApartmentModel SelectedApartment { get; set; }
 
         public event EventHandler CanExecuteChanged
         {
@@ -21,15 +21,13 @@ namespace District.MVVM.Commands
             remove => CommandManager.RequerySuggested -= value;
         }
 
-        public BuyApartmentCommand(IPersonService personService, PersonModel selectedPerson, ApartmentModel selectedApartment)
+        public BuyApartmentCommand(IPersonService personService)
         {
             _personService = personService;
-            _selectedPerson = selectedPerson;
-            _selectedApartment = selectedApartment;
         }
         public bool CanExecute(object parameter)
         {
-            return (this._selectedApartment != null && this._selectedPerson != null);
+            return (this.SelectedApartment != null && this.SelectedPerson != null);
             //return true;
         }
 
@@ -39,9 +37,9 @@ namespace District.MVVM.Commands
             //Logic
             //SelectedPerson.id
 
-            Buy(_selectedPerson.Id, _selectedApartment.Id);
+            Buy(SelectedPerson.Id, SelectedApartment.Id);
             MessageBox.Show("Apartment was bought");
-            
+            //SelectedApartment.OnPropertyChanged();
 
         }
 
