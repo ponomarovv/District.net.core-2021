@@ -1,24 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System.CodeDom;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 using District.Bl.Abstract.IServices;
-using District.Bl.Impl.Services;
 using District.Models.Models;
+using District.MVVM.Commands;
+//using MVVM;
 
-namespace MVVM.ViewModels
+namespace District.MVVM.ViewModels
 {
-    public class ApplicationViewModel : INotifyPropertyChanged
+    public class DistrictViewModel : INotifyPropertyChanged
     {
-        private ApartmentModel _selectedApartment ;
+        private readonly ApartmentModel _selectedApartment;
         private readonly IApartmentService _apartmentService;
         private ObservableCollection<ApartmentModel> _apartments;
 
-        private PersonModel _selectedPerson;
+        private readonly PersonModel _selectedPerson;
         private readonly IPersonService _personService;
         private ObservableCollection<PersonModel> _persons;
 
@@ -33,6 +32,7 @@ namespace MVVM.ViewModels
         public ICommand BuyApartmentCommand
         {
             get => _buyApartmentCommand;
+
         }
 
 
@@ -44,14 +44,14 @@ namespace MVVM.ViewModels
             {
                 _apartments = value;
                 OnPropertyChanged(nameof(Apartments));
-            } 
+            }
         }
 
         public ApartmentModel SelectedApartment
         {
             get
             {
-                //if (_selectedApartment == null) 
+                //if (_selectedApartment == null)
                 //{
                 //    return new ApartmentModel();
                 //}
@@ -59,7 +59,7 @@ namespace MVVM.ViewModels
             }
             set
             {
-                
+
                 _selectedApartment.Id = value.Id;
                 OnPropertyChanged("SelectedApartment");
 
@@ -115,9 +115,9 @@ namespace MVVM.ViewModels
         //}
 
 
- 
 
-        public ApplicationViewModel(IApartmentService apartmentService, IPersonService personService) 
+
+        public DistrictViewModel(IApartmentService apartmentService, IPersonService personService)
         {
             _apartmentService = apartmentService;
             _personService = personService;
@@ -126,7 +126,7 @@ namespace MVVM.ViewModels
             _selectedApartment = new ApartmentModel();
 
             _closeCommand = new CloseCommand();
-            _buyApartmentCommand = new BuyApartmentCommand(_personService ,SelectedPerson, SelectedApartment);
+            _buyApartmentCommand = new BuyApartmentCommand(_personService, SelectedPerson, SelectedApartment);
 
             InitData();
         }

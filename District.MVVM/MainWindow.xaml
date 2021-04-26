@@ -3,19 +3,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MVVM"
+        xmlns:local="clr-namespace:District.MVVM"
+        
+        xmlns:vm="clr-namespace:District.MVVM.ViewModels"
+        
 
-        xmlns:cmd="clr-namespace:MVVM"
+        xmlns:cmd="clr-namespace:District.MVVM.Commands"
 
-        xmlns:l="clr-namespace:MVVM"
+        xmlns:l="clr-namespace:District.MVVM"
 
-        xmlns:vm="clr-namespace:MVVM.ViewModels"
+        
+
+        
+
 
         mc:Ignorable="d"
 
 
 
-        Title="MainWindow" MinHeight="750" MinWidth="1025" Height="750" Width="1025">
+        Title="District" MinHeight="750" MinWidth="1025" Height="750" Width="1025">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="14" />
@@ -26,6 +32,12 @@
         
         
     </Window.Resources>
+
+    <!--<Window.DataContext>
+        <vm:DistrictViewModel/>
+    </Window.DataContext>-->
+    
+    
     <Grid x:Name="Grid1">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -43,15 +55,21 @@
                 <DataTemplate>
                     <StackPanel Margin="5">
 
-                        <TextBlock Text="Building ID" />
+                        <TextBlock Text="Building ID" /> 
                         <TextBlock Text="{Binding Path=BuildingId}" />
 
 
                         <TextBlock Text="ApartmentNumber" />
                         <TextBlock Text="{Binding Path=ApartmentNumber}" />
 
-                        <TextBlock Text="Apartment ID" />
-                        <TextBlock Text= "{Binding Path=Id}" />
+                        <!--<TextBlock Text="SquareSize" />
+                        <TextBlock Text="{Binding Path=SquareSize}" />-->
+
+
+                        <!--<TextBlock Text="Apartment ID" />
+                        <TextBlock Text= "{Binding Path=Id}" />-->
+
+                        
 
 
 

@@ -6,11 +6,11 @@ using District.Bl.Abstract.IServices;
 using District.Bl.Impl.Mappers;
 using District.Models.Models;
 
-namespace MVVM
+namespace District.MVVM.Commands
 {
     public class BuyApartmentCommand : ICommand
     {
-        private IPersonService _personService;
+        private readonly IPersonService _personService;
 
         private readonly PersonModel _selectedPerson;
         private readonly ApartmentModel _selectedApartment;
@@ -29,7 +29,8 @@ namespace MVVM
         }
         public bool CanExecute(object parameter)
         {
-            return true;
+            return (this._selectedApartment != null && this._selectedPerson != null);
+            //return true;
         }
 
         public void Execute(object parameter)
@@ -40,6 +41,7 @@ namespace MVVM
 
             Buy(_selectedPerson.Id, _selectedApartment.Id);
             MessageBox.Show("Apartment was bought");
+            
 
         }
 

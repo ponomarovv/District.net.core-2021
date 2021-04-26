@@ -20,10 +20,10 @@ namespace District.Bl.Impl.Services
     public class PersonService : IPersonService
     {
         private readonly IUnitOfWork _unitOfWork;
-        
+
         private readonly IBackMapper<Person, PersonModel> _personMapper;
 
-       
+
 
         public PersonService(IUnitOfWork unitOfWork, IBackMapper<Person, PersonModel> personMapper)
         {
@@ -35,17 +35,22 @@ namespace District.Bl.Impl.Services
 
         public async Task<PersonModel> CreatePerson(PersonModel model)
         {
-            return  _personMapper.Map(await _unitOfWork.PersonRepository.AddAsync(_personMapper.MapBack(model)));
+            var person = _personMapper.Map(await _unitOfWork.PersonRepository.AddAsync(_personMapper.MapBack(model)));
+            _unitOfWork.Save();
+
+            return person;
         }
 
         public async Task UpdatePerson(PersonModel model)
         {
             await _unitOfWork.PersonRepository.UpdateAsync(_personMapper.MapBack(model));
+            //_unitOfWork.Save();
         }
 
         public async Task DeletePerson(int id)
         {
             await _unitOfWork.PersonRepository.DeleteAsync(id);
+            //_unitOfWork.Save();
         }
 
         public async Task BuyApartment(int personId, int apartmentId)
@@ -68,6 +73,7 @@ namespace District.Bl.Impl.Services
             }
 
             await _unitOfWork.ApartmentRepository.UpdateAsync(apartment);
+            //_unitOfWork.Save();
         }
         public async Task<PersonModel> GetByIdAsync(int id)
         {
@@ -85,7 +91,7 @@ namespace District.Bl.Impl.Services
         {
 
 
-            PersonModel result =  
+            PersonModel result =
                 _personMapper.Map(await _unitOfWork.PersonRepository.FindPersonByName(name));
 
             //if (result == null)
@@ -93,7 +99,7 @@ namespace District.Bl.Impl.Services
             //    PersonModel noneModel2 = new PersonModel() { };
             //    return noneModel2;
             //}
-            
+
             //if (result == null)
             //{
             //    Console.WriteLine("Nothing found");

@@ -15,9 +15,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using District.Bl.Abstract.IServices;
 using District.Models.Models;
+using District.MVVM.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
-using MVVM;
-using MVVM.ViewModels;
+
 
 namespace District.MVVM
 {
@@ -33,10 +33,15 @@ namespace District.MVVM
 
 
             // Get a local instance of the container
-            var container = ((App)App.Current).Container;
+            var container = ((App)Application.Current).Container;
 
             // Request an instance of the ViewModel and set it to the DataContext
-            DataContext = ActivatorUtilities.GetServiceOrCreateInstance(container, typeof(ApplicationViewModel));
+            DataContext = ActivatorUtilities.GetServiceOrCreateInstance(container, typeof(DistrictViewModel));
+
+
+
+
+
             //DataContext = new ApplicationViewModel();
         }
     }
