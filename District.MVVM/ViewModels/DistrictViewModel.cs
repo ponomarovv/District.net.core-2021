@@ -117,7 +117,10 @@ namespace District.MVVM.ViewModels
         //}
 
 
-
+        //public DistrictViewModel()
+        //{
+            
+        //}
 
         public DistrictViewModel(IApartmentService apartmentService, IPersonService personService)
         {
