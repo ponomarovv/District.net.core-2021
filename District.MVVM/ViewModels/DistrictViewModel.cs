@@ -1,8 +1,10 @@
-﻿using System.CodeDom;
+﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using District.Bl.Abstract.IServices;
 using District.Models.Models;
@@ -21,6 +23,8 @@ namespace District.MVVM.ViewModels
         private readonly IPersonService _personService;
         private ObservableCollection<PersonModel> _persons;
 
+        private readonly Action _updateData;
+
         private readonly ICommand _closeCommand;
         public ICommand CloseCommand
         {
@@ -28,7 +32,7 @@ namespace District.MVVM.ViewModels
         }
 
 
-        private readonly ICommand _buyApartmentCommand;
+        private ICommand _buyApartmentCommand;
         public ICommand BuyApartmentCommand
         {
             get => _buyApartmentCommand;
@@ -39,7 +43,10 @@ namespace District.MVVM.ViewModels
 
         public ObservableCollection<ApartmentModel> Apartments
         {
-            get => _apartments;
+            get
+            {
+                return _apartments;
+            } 
             set
             {
                 _apartments = value;
@@ -51,10 +58,7 @@ namespace District.MVVM.ViewModels
         {
             get
             {
-                //if (_selectedApartment == null)
-                //{
-                //    return new ApartmentModel();
-                //}
+
                 return _selectedApartment;
             }
             set
@@ -64,7 +68,7 @@ namespace District.MVVM.ViewModels
                 ((BuyApartmentCommand) _buyApartmentCommand).SelectedApartment = value;
                 OnPropertyChanged("SelectedApartment");
 
-                //SetSelectedPersonModel(SelectedApartment);
+               
             }
         }
 
@@ -72,10 +76,7 @@ namespace District.MVVM.ViewModels
         {
             get
             {
-                //if (_selectedApartment == null) 
-                //{
-                //    return new ApartmentModel();
-                //}
+                
                 return _selectedPerson;
             }
             set
@@ -84,9 +85,9 @@ namespace District.MVVM.ViewModels
                 _selectedPerson = value;
                 ((BuyApartmentCommand) _buyApartmentCommand).SelectedPerson = value;
                 OnPropertyChanged("SelectedPerson");
-
-                //SetSelectedPersonModel(SelectedApartment);
             }
+
+
         }
 
         public ObservableCollection<PersonModel> Persons
@@ -99,28 +100,7 @@ namespace District.MVVM.ViewModels
             }
         }
 
-        //private RelayCommand _closeCommand;
-        //public RelayCommand CloseCommand
-        //{
-        //    get
-        //    {
-        //        return _closeCommand ??
-        //               (_closeCommand = new RelayCommand
-        //                   (obj => 
-        //                   {
-        //                       //MessageBox.Show("Program is closing.", caption: "Close info");
-        //                       Application.Current.Shutdown();
-
-        //                   })
-        //               );
-        //    }
-        //}
-
-
-        //public DistrictViewModel()
-        //{
-            
-        //}
+       
 
         public DistrictViewModel(IApartmentService apartmentService, IPersonService personService)
         {
@@ -128,8 +108,10 @@ namespace District.MVVM.ViewModels
             _personService = personService;
 
             _closeCommand = new CloseCommand();
-            _buyApartmentCommand = new BuyApartmentCommand(_personService);
+            _updateData += InitData;
+            _buyApartmentCommand = new BuyApartmentCommand(_personService, _updateData);
 
+            
             InitData();
         }
 
@@ -140,21 +122,7 @@ namespace District.MVVM.ViewModels
 
             List<PersonModel> allPersons = await _personService.GetAllPersons();
             Persons = new ObservableCollection<PersonModel>(allPersons);
-
-
-
-            //_personService = new PersonService();
-            //var personOfApartment = await _personService.GetByIdAsync(SelectedApartment.PersonId);
-            //Persons = new ObservableCollection<PersonModel>();
-            //Persons.Add(personOfApartment);
         }
-
-        //public async Task SetSelectedPersonModel(ApartmentModel selectedApartment)
-        //{
-        //    var personOfApartment = await _personService.GetByIdAsync(selectedApartment.PersonId);
-        //    Persons = new ObservableCollection<PersonModel>() { };
-        //    Persons.Add(personOfApartment);
-        //}
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

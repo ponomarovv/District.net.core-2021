@@ -27,7 +27,7 @@ namespace District.MVVM
     public partial class MainWindow : Window
     {
 
-        public MainWindow()
+        public MainWindow(DistrictViewModel vm)
         {
             InitializeComponent();
 
@@ -36,8 +36,9 @@ namespace District.MVVM
             var container = ((App)Application.Current).Container;
 
             // Request an instance of the ViewModel and set it to the DataContext
-            DataContext = ActivatorUtilities.GetServiceOrCreateInstance(container, typeof(DistrictViewModel));
 
+            //DataContext = ActivatorUtilities.GetServiceOrCreateInstance(container, typeof(DistrictViewModel));
+            DataContext = vm;
 
 
 
