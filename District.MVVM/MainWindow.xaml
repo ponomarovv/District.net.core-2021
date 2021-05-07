@@ -21,7 +21,7 @@
 
 
 
-        Title="District" MinHeight="750" MinWidth="1025" Height="750" Width="1025">
+        Title="District" MinHeight="750" MinWidth="600" Height="750" Width="600">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="14" />
@@ -40,8 +40,8 @@
     
     <Grid x:Name="Grid1">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="0.8*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height = "20"></RowDefinition>
@@ -68,6 +68,9 @@
 
                         <!--<TextBlock Text="Apartment ID" />
                         <TextBlock Text= "{Binding Path=Id}" />-->
+
+                        <TextBlock Text="PersonId" />
+                        <TextBlock Text="{Binding Path=PersonId}" />
 
 
 

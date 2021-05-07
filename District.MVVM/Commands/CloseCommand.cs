@@ -69,10 +69,8 @@ namespace District.MVVM.Commands
 
 
 //todo something wrong with main window. p id.
-//todo something wrong with siege
-//todo active command.
+
 
 //todo dependency inversion
-
 //todo paths on view...
 #endregion

@@ -14,6 +14,7 @@ using District.Dal.Abstact;
 using District.Dal.Impl;
 using District.Entities.Tables;
 using District.Models.Models;
+using District.MVVM.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -54,7 +55,10 @@ namespace District.MVVM
             serviceCollection.AddTransient<IBackMapper<Person, PersonModel>, PersonMapper>();
             serviceCollection.AddTransient<IBackMapper<Building, BuildingModel>, BuildingMapper>(); 
             serviceCollection.AddTransient<IBackMapper<Entrance, EntranceModel>, EntranceMapper>();
-            
+
+            serviceCollection.AddSingleton<DistrictViewModel>();
+            serviceCollection.AddSingleton<MainWindow>();
+
             // Build the IServiceProvider and return it
             return serviceCollection.BuildServiceProvider();
         }

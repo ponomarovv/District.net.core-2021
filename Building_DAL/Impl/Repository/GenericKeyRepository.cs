@@ -58,6 +58,5 @@ namespace District.Dal.Impl.Repository
             int item = await DbSet.CountAsync();
             return item;
         }
-
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -11,6 +13,8 @@ namespace District.MVVM.Commands
     public class BuyApartmentCommand : ICommand
     {
         private readonly IPersonService _personService;
+        private readonly Action _updateData;
+
 
         public PersonModel SelectedPerson { get; set; }
         public ApartmentModel SelectedApartment { get; set; }
@@ -21,9 +25,10 @@ namespace District.MVVM.Commands
             remove => CommandManager.RequerySuggested -= value;
         }
 
-        public BuyApartmentCommand(IPersonService personService)
+        public BuyApartmentCommand(IPersonService personService, Action updateData)
         {
             _personService = personService;
+            _updateData = updateData;
         }
         public bool CanExecute(object parameter)
         {
@@ -39,6 +44,8 @@ namespace District.MVVM.Commands
 
             Buy(SelectedPerson.Id, SelectedApartment.Id);
             MessageBox.Show("Apartment was bought");
+
+
             //SelectedApartment.OnPropertyChanged();
 
         }
@@ -46,6 +53,7 @@ namespace District.MVVM.Commands
         public async Task Buy(int selectedPersonId, int selectedApartmentId)
         {
             await _personService.BuyApartment(selectedPersonId, selectedApartmentId);
+            _updateData?.Invoke();
         }
     }
 }
