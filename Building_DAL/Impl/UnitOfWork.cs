@@ -13,7 +13,15 @@ namespace District.Dal.Impl
         private IBuildingRepository _buildingRepository;
         private IEntranceRepository _entranceRepository;
 
+         public UnitOfWork(DistrictDbContext dbContext)
+        {
+            this._dbContext = dbContext;
 
+
+
+            //_apartmentRepository = new ApartmentRepository(_dbContext);
+            //_personRepository = new PersonRepository(_dbContext);
+        }
 
         public ApartmentRepository ApartmentRepository
         {
@@ -35,15 +43,7 @@ namespace District.Dal.Impl
             get { return (EntranceRepository)(_entranceRepository ??= new EntranceRepository(_dbContext)); }
         }
 
-        public UnitOfWork(DistrictDbContext dbContext)
-        {
-            this._dbContext = dbContext;
-
-
-
-            //_apartmentRepository = new ApartmentRepository(_dbContext);
-            //_personRepository = new PersonRepository(_dbContext);
-        }
+       
 
         public void Save()
         {

@@ -42,19 +42,21 @@ namespace District.MVVM
             serviceCollection.AddDbContext<DistrictDbContext>(options =>
                 options.UseNpgsql(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString));
 
-            serviceCollection.AddTransient<IUnitOfWork, UnitOfWork>(); 
+            serviceCollection.AddSingleton<IUnitOfWork, UnitOfWork>(); 
             
             //Services
-            serviceCollection.AddTransient<IApartmentService, ApartmentService>();
-            serviceCollection.AddTransient<IPersonService, PersonService>();
-            serviceCollection.AddTransient<IBuildingService, BuildingService>();
-            serviceCollection.AddTransient<IEntranceService, EntranceService>();
+            serviceCollection.AddSingleton<IApartmentService, ApartmentService>();
+            serviceCollection.AddSingleton<IPersonService, PersonService>();
+            serviceCollection.AddSingleton<IBuildingService, BuildingService>();
+            serviceCollection.AddSingleton<IEntranceService, EntranceService>();
             
             //Mappers
-            serviceCollection.AddTransient<IBackMapper<Apartment, ApartmentModel>, ApartmentMapper>();
-            serviceCollection.AddTransient<IBackMapper<Person, PersonModel>, PersonMapper>();
-            serviceCollection.AddTransient<IBackMapper<Building, BuildingModel>, BuildingMapper>(); 
-            serviceCollection.AddTransient<IBackMapper<Entrance, EntranceModel>, EntranceMapper>();
+            serviceCollection.AddSingleton<IBackMapper<Apartment, ApartmentModel>, ApartmentMapper>();
+            serviceCollection.AddSingleton<IBackMapper<Person, PersonModel>, PersonMapper>();
+            serviceCollection.AddSingleton<IBackMapper<Building, BuildingModel>, BuildingMapper>(); 
+            serviceCollection.AddSingleton<IBackMapper<Entrance, EntranceModel>, EntranceMapper>();
+
+            //AddTransient
 
             serviceCollection.AddSingleton<DistrictViewModel>();
             serviceCollection.AddSingleton<MainWindow>();
