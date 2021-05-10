@@ -11,7 +11,9 @@ using District.Bl.Impl.Mappers;
 using District.Bl.Impl.Services;
 using District.Dal;
 using District.Dal.Abstact;
+using District.Dal.Abstact.IRepository;
 using District.Dal.Impl;
+using District.Dal.Impl.Repository;
 using District.Entities.Tables;
 using District.Models.Models;
 using District.MVVM.ViewModels;
@@ -49,7 +51,15 @@ namespace District.MVVM
             serviceCollection.AddSingleton<IPersonService, PersonService>();
             serviceCollection.AddSingleton<IBuildingService, BuildingService>();
             serviceCollection.AddSingleton<IEntranceService, EntranceService>();
-            
+
+            //Repositories
+            serviceCollection.AddSingleton<IApartmentRepository, ApartmentRepository>();
+            serviceCollection.AddSingleton<IPersonRepository, PersonRepository>();
+            serviceCollection.AddSingleton<IBuildingRepository, BuildingRepository>();
+            serviceCollection.AddSingleton<IEntranceRepository, EntranceRepository>();
+
+
+
             //Mappers
             serviceCollection.AddSingleton<IBackMapper<Apartment, ApartmentModel>, ApartmentMapper>();
             serviceCollection.AddSingleton<IBackMapper<Person, PersonModel>, PersonMapper>();

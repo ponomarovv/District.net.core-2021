@@ -1,19 +1,21 @@
-﻿using District.Dal.Impl.Repository;
+﻿using System.Threading.Tasks;
+using District.Dal.Impl.Repository;
 
 namespace District.Dal.Abstact
 {
     public interface IUnitOfWork
     {
-        ApartmentRepository ApartmentRepository { get; }
+         ApartmentRepository ApartmentRepository { get; }
 
 
-        public PersonRepository PersonRepository { get; }
+         PersonRepository PersonRepository { get; }
 
-        public BuildingRepository BuildingRepository { get; }
+         BuildingRepository BuildingRepository { get; }
 
-        public EntranceRepository EntranceRepository { get; }
+         EntranceRepository EntranceRepository { get; }
 
-        void Save();
+        //void Save();
+        Task Save();
 
     }
 }

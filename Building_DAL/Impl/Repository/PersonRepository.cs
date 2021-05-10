@@ -15,8 +15,7 @@ namespace District.Dal.Impl.Repository
         {
             
         }
-
-
+        
         public async Task<Person> FindPersonByName(string name)
         {
             return await Context.Persons.FirstOrDefaultAsync(x => x.Name == name);

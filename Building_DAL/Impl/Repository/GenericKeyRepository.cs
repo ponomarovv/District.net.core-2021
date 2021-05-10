@@ -30,7 +30,11 @@ namespace District.Dal.Impl.Repository
 
         public virtual async Task UpdateAsync(TEntity entity)
         {
-            Context.Update(entity);
+            //Context.Entry(entity).State = EntityState.Modified;
+            //Context.Update(entity);
+
+            Context.Entry(entity).State = EntityState.Modified;
+            //Context.Update(entity);
             await Context.SaveChangesAsync();
         }
 
